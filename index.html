@@ -6,748 +6,1266 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="theme-color" content="#000">
-  <title>PANCARTA IA — Robayo Automatizaciones</title>
+  <title>PANCARTA IA — Vitrina Digital Colombia</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━
-   RESET & ROOT
-━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* ══════════════════════════════════════════
+   RESET
+══════════════════════════════════════════ */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Space Grotesk',sans-serif}
+button{font-family:inherit;cursor:pointer}
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━
-   INTRO
-━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* ══════════════════════════════════════════
+   INTRO — COLOMBIA
+══════════════════════════════════════════ */
 #intro{
-  position:fixed;inset:0;background:#000;z-index:1000;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;
-  transition:opacity .8s ease,visibility .8s ease;cursor:pointer;
+  position:fixed;inset:0;background:#000;z-index:2000;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.4rem;
+  cursor:pointer;transition:opacity .8s ease,visibility .8s ease;
 }
 #intro.out{opacity:0;visibility:hidden;pointer-events:none}
-.i-icon{font-size:3.5rem;animation:popIn .6s cubic-bezier(.34,1.56,.64,1) both}
-@keyframes popIn{from{transform:scale(0)rotate(-180deg);opacity:0}to{transform:scale(1)rotate(0);opacity:1}}
-.i-t1{font-family:'Orbitron',sans-serif;font-size:1.9rem;font-weight:900;color:#fff;letter-spacing:.07em;text-align:center;animation:glIn .5s .35s ease both}
+
+.i-flag{
+  width:60px;height:40px;border-radius:5px;overflow:hidden;
+  display:flex;flex-direction:column;margin-bottom:.5rem;
+  animation:flagIn .5s cubic-bezier(.34,1.56,.64,1) both;
+  box-shadow:0 0 20px rgba(252,209,22,.3);
+}
+.i-flag-y{flex:2;background:#FCD116}
+.i-flag-b{flex:1;background:#003893}
+.i-flag-r{flex:1;background:#CE1126}
+@keyframes flagIn{from{transform:scale(0)rotate(-90deg);opacity:0}to{transform:scale(1)rotate(0);opacity:1}}
+
+.i-icon{font-size:2.8rem;animation:popIn .5s .3s cubic-bezier(.34,1.56,.64,1) both}
+@keyframes popIn{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+
+.i-t1{
+  font-family:'Orbitron',sans-serif;font-size:1.7rem;font-weight:900;
+  color:#fff;letter-spacing:.07em;text-align:center;
+  animation:glIn .55s .5s ease both;
+}
 @keyframes glIn{
-  0%{opacity:0;transform:skewX(14deg);color:#00f5ff}
-  35%{opacity:1;transform:skewX(-4deg);color:#ff006e}
-  65%{transform:skewX(2deg);color:#7b2fff}
+  0%{opacity:0;transform:skewX(14deg);color:#FCD116}
+  30%{opacity:1;transform:skewX(-4deg);color:#003893}
+  65%{transform:skewX(2deg);color:#CE1126}
   100%{opacity:1;transform:skewX(0);color:#fff}
 }
-.i-t2{font-family:'Orbitron',sans-serif;font-size:.65rem;color:rgba(255,255,255,.35);letter-spacing:.22em;animation:fu .4s .9s ease both}
-@keyframes fu{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-.i-bar{width:160px;height:2px;background:rgba(255,255,255,.1);border-radius:2px;margin-top:1.8rem;overflow:hidden;animation:fu .3s 1.1s ease both}
-.i-fill{height:100%;width:0;background:linear-gradient(90deg,#7b2fff,#00f5ff,#ff006e,#fcbf49);animation:bf 1.8s 1.1s ease forwards}
+.i-t2{font-family:'Orbitron',sans-serif;font-size:.62rem;color:rgba(255,255,255,.35);letter-spacing:.2em;animation:fu .4s .95s ease both}
+.i-tagline{font-size:.85rem;color:rgba(255,255,255,.6);text-align:center;max-width:260px;line-height:1.5;margin-top:.3rem;animation:fu .4s 1.1s ease both}
+.i-tagline strong{color:#FCD116}
+
+.i-bar{
+  width:200px;height:3px;background:rgba(255,255,255,.1);border-radius:3px;
+  margin-top:1.6rem;overflow:hidden;animation:fu .3s 1.3s ease both;
+}
+.i-fill{
+  height:100%;width:0;
+  background:linear-gradient(90deg,#FCD116 0%,#FCD116 33%,#003893 33%,#003893 66%,#CE1126 66%,#CE1126 100%);
+  background-size:200px 100%;
+  animation:bf 1.8s 1.3s ease forwards;
+}
 @keyframes bf{to{width:100%}}
-.i-hint{font-size:.58rem;color:rgba(255,255,255,.2);letter-spacing:.15em;margin-top:1.2rem;animation:fu .3s 2.6s ease both}
+@keyframes fu{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━
+.i-hint{font-size:.55rem;color:rgba(255,255,255,.18);letter-spacing:.15em;margin-top:.8rem;animation:fu .3s 2.8s ease both}
+
+/* ══════════════════════════════════════════
    APP SHELL
-━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-#app{width:100%;height:100dvh;display:flex;flex-direction:column;overflow:hidden}
+══════════════════════════════════════════ */
+#app{
+  width:100%;height:100dvh;display:flex;flex-direction:column;
+  overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;
+}
+#app::-webkit-scrollbar{display:none}
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━
+/* ══════════════════════════════════════════
    TOPBAR
-━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+══════════════════════════════════════════ */
 #topbar{
-  height:46px;flex-shrink:0;
+  height:46px;flex-shrink:0;position:sticky;top:0;z-index:100;
   display:flex;align-items:center;justify-content:space-between;
-  padding:0 1rem;background:rgba(0,0,0,.8);border-bottom:1px solid rgba(255,255,255,.07);
-  position:relative;z-index:50;
+  padding:0 .9rem;background:rgba(0,0,0,.92);
+  border-bottom:1px solid rgba(255,255,255,.07);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
 }
-.tb-brand{font-family:'Orbitron',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.12em;
-  background:linear-gradient(90deg,#7b2fff,#00f5ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.tb-right{display:flex;align-items:center;gap:.5rem}
-.tb-tag{font-size:.55rem;color:rgba(255,255,255,.25);letter-spacing:.14em}
+.tb-brand{font-family:'Orbitron',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.1em;
+  background:linear-gradient(90deg,#FCD116,#003893,#CE1126);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.tb-king{
+  display:flex;align-items:center;gap:.3rem;
+  font-family:'Orbitron',sans-serif;font-size:.52rem;letter-spacing:.06em;
+  color:rgba(255,255,255,.5);
+}
+.tb-king-val{color:#FCD116;font-weight:700}
 .tb-dot{width:6px;height:6px;border-radius:50%;background:#00f5ff;animation:dotPulse 2s ease-in-out infinite}
-@keyframes dotPulse{0%,100%{opacity:1;box-shadow:0 0 4px #00f5ff}50%{opacity:.4;box-shadow:none}}
+@keyframes dotPulse{0%,100%{box-shadow:0 0 4px #00f5ff;opacity:1}50%{box-shadow:none;opacity:.4}}
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━
-   FEATURED SPOT (PREMIUM)
-━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-#featured{
-  flex:2;min-height:0;position:relative;overflow:hidden;
-  background:#06060f;display:flex;flex-direction:column;align-items:center;
+/* ══════════════════════════════════════════
+   VITRINA GRID
+══════════════════════════════════════════ */
+#vitrina{
+  display:grid;grid-template-columns:repeat(6,1fr);
+  gap:2px;padding:2px;background:#000;
+  flex:1;
 }
 
-/* ambient bg */
-#featured::before{
+/* TIER HEIGHTS */
+.s-king{grid-column:span 6;min-height:clamp(150px,22dvh,200px)}
+.s-mid {grid-column:span 3;min-height:clamp(110px,16dvh,150px)}
+.s-std {grid-column:span 2;min-height:clamp(85px,12dvh,115px)}
+.s-micro{grid-column:span 1;min-height:clamp(62px,9dvh,85px)}
+
+/* BASE SPOT */
+.spot{
+  position:relative;overflow:hidden;
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
+  cursor:pointer;padding-bottom:.4rem;
+  transition:brightness .15s ease;
+}
+.spot:active{brightness:.8}
+
+/* ambient glow per spot (set by JS via --ac custom prop) */
+.spot::before{
   content:'';position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(ellipse 90% 60% at 50% 0%,#7b2fff25,transparent),
-             radial-gradient(ellipse 60% 50% at 90% 100%,#00f5ff15,transparent);
+  background:radial-gradient(ellipse 100% 70% at 50% -10%,rgba(var(--acr),var(--acg),var(--acb),.18),transparent);
 }
 /* scanlines */
-#featured::after{
-  content:'';position:absolute;inset:0;pointer-events:none;
+.spot::after{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
   background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,.04) 3px,rgba(0,0,0,.04) 4px);
 }
 
+/* stars */
+.spot-stars{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.star{position:absolute;border-radius:50%;animation:twink var(--d) var(--dl) ease-in-out infinite}
+@keyframes twink{0%,100%{opacity:0}50%{opacity:var(--o)}}
+
+/* ── TIER BADGE ─────────────── */
 .tier-badge{
-  position:absolute;top:.6rem;left:.7rem;z-index:20;
-  font-family:'Orbitron',sans-serif;font-size:.55rem;font-weight:700;letter-spacing:.1em;
-  color:#ffbe0b;background:rgba(255,190,11,.12);border:1px solid rgba(255,190,11,.28);
-  border-radius:20px;padding:.18rem .6rem;
-  animation:badgePop 3s ease-in-out infinite;
+  position:absolute;top:.45rem;left:.5rem;z-index:20;
+  font-family:'Orbitron',sans-serif;font-size:.5rem;font-weight:700;letter-spacing:.09em;
+  color:#FCD116;background:rgba(252,209,22,.12);border:1px solid rgba(252,209,22,.25);
+  border-radius:20px;padding:.16rem .5rem;
 }
-@keyframes badgePop{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
 
-/* stars layer */
-.stars{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
-.star{position:absolute;border-radius:50%;animation:twinkle var(--d) var(--dl) ease-in-out infinite}
-@keyframes twinkle{0%,100%{opacity:0}50%{opacity:var(--o)}}
+/* ── KING CROWN (animated on leader) */
+.king-crown{
+  position:absolute;top:.4rem;right:.5rem;z-index:20;
+  font-size:1rem;animation:crownBounce 2s ease-in-out infinite;
+  display:none;
+}
+.is-king .king-crown{display:block}
+.is-king{box-shadow:inset 0 0 40px rgba(252,209,22,.08)}
+@keyframes crownBounce{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-4px) rotate(5deg)}}
 
-/* avatar stage - featured */
-.stage-f{
+/* ── AVATAR STAGE ─────────────── */
+.stage{
   flex:1;min-height:0;width:100%;position:relative;
-  display:flex;align-items:center;justify-content:center;z-index:10;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;z-index:10;
 }
 .ring{position:absolute;border-radius:50%;border:1px solid;animation:rp 3.5s ease-in-out infinite}
-.r1{width:160px;height:160px;opacity:.22}
-.r2{width:200px;height:200px;opacity:.13;animation-delay:.6s}
-.r3{width:245px;height:245px;opacity:.07;animation-delay:1.2s}
-@keyframes rp{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
-.pk .ring,.stage-f.pk .ring{border-color:#00f5ff}
+.rg1{width:70%;padding-top:70%;opacity:.18}
+.rg2{width:88%;padding-top:88%;opacity:.1;animation-delay:.6s}
+@keyframes rp{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
 
-.av-f{
-  height:155px;width:auto;position:relative;z-index:11;
+.av{
+  width:auto;position:relative;z-index:11;
+  animation:fl var(--fd,3.5s) var(--fdy,0s) ease-in-out infinite;
+  transition:transform .15s ease;filter:drop-shadow(0 6px 20px rgba(0,0,0,.6));
+}
+.s-king .av{height:clamp(100px,16dvh,135px)}
+.s-mid  .av{height:clamp(72px,11dvh,100px)}
+.s-std  .av{height:clamp(52px,8dvh,72px)}
+.av:active{transform:scale(.9)rotate(-4deg)!important}
+@keyframes fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+
+/* ── SPOT INFO ─────────────────── */
+.spot-info{
+  text-align:center;position:relative;z-index:10;
+  display:flex;flex-direction:column;align-items:center;gap:.14rem;
+  padding:0 .2rem;
+}
+.sp-name{
+  font-family:'Orbitron',sans-serif;font-weight:700;
+  color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  width:100%;
+}
+.s-king .sp-name{font-size:.78rem}
+.s-mid  .sp-name{font-size:.58rem}
+.s-std  .sp-name{font-size:.46rem}
+
+.sp-badge{
+  font-size:.52rem;font-weight:700;letter-spacing:.06em;
+  padding:.13rem .45rem;border-radius:20px;
+  animation:badgePop 2.5s ease-in-out infinite;
+  white-space:nowrap;
+}
+.s-mid .sp-badge,.s-std .sp-badge{font-size:.44rem;padding:.1rem .35rem}
+@keyframes badgePop{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+
+/* ── SCORE BAR ─────────────────── */
+.score-bar-wrap{
+  position:absolute;bottom:0;left:0;right:0;height:3px;background:rgba(255,255,255,.07);z-index:15;
+}
+.s-micro .score-bar-wrap{height:2px}
+.score-bar-fill{height:100%;width:0%;transition:width .5s ease;border-radius:0 2px 2px 0}
+
+/* ── SCORE COUNTER ─────────────────── */
+.score-count{
+  font-family:'Orbitron',sans-serif;font-size:.42rem;color:rgba(255,255,255,.4);
+  position:absolute;bottom:5px;right:.35rem;z-index:15;letter-spacing:.04em;
+}
+.s-micro .score-count{display:none}
+
+/* ── NOTIF BUBBLE ─────────────────── */
+.notif-bub{
+  position:absolute;top:.4rem;right:.4rem;z-index:20;
+  font-size:.45rem;font-weight:700;padding:.12rem .38rem;border-radius:20px;
+  opacity:0;transition:opacity .3s ease;pointer-events:none;
+  background:rgba(255,0,0,.7);color:#fff;
+}
+.notif-bub.show{opacity:1}
+
+/* ── GHOST SPOTS ─────────────────── */
+.ghost-av{
+  display:flex;flex-direction:column;align-items:center;z-index:11;
   animation:fl 3.5s ease-in-out infinite;
-  filter:drop-shadow(0 10px 28px rgba(0,0,0,.6));
-  transition:transform .15s ease;
+  position:relative;
 }
-.av-f:active{transform:scale(.92)rotate(-5deg)!important}
-@keyframes fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.s-king .ghost-av .gb{width:58px;height:68px;font-size:1.6rem}
+.s-mid  .ghost-av .gb{width:46px;height:54px;font-size:1.2rem}
+.s-std  .ghost-av .gb{width:34px;height:40px;font-size:.9rem}
+.s-micro .ghost-av{animation:fl 3s ease-in-out var(--fdy,0s) infinite}
+.s-micro .ghost-av .gb{width:24px;height:28px;font-size:.65rem}
 
-/* info strip inside featured */
-.feat-info{
-  width:100%;flex-shrink:0;padding:.6rem .9rem .7rem;z-index:10;
-  display:flex;align-items:center;gap:.8rem;
-  background:linear-gradient(0deg,rgba(0,0,0,.6),transparent);
+.gb{
+  background:rgba(255,255,255,.04);border:1.5px dashed rgba(255,255,255,.2);
+  border-radius:50% 50% 35% 35%;display:flex;align-items:center;justify-content:center;
+  color:rgba(255,255,255,.3);font-family:'Orbitron',sans-serif;font-weight:700;
+  animation:gbGlow 2.5s ease-in-out infinite;flex-shrink:0;
 }
-.feat-left{flex:1;min-width:0}
-.feat-nm{font-family:'Orbitron',sans-serif;font-size:1rem;font-weight:900;
-  color:#00f5ff;text-shadow:0 0 18px #00f5ff88;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.feat-url{font-size:.65rem;color:rgba(255,255,255,.32);letter-spacing:.14em;text-transform:uppercase}
-.feat-offer{display:inline-flex;align-items:center;gap:.35rem;margin-top:.3rem;
-  font-size:.68rem;font-weight:600;color:rgba(255,255,255,.65)}
-.feat-offer-val{
-  font-family:'Orbitron',sans-serif;font-size:.85rem;font-weight:900;color:#00f5ff;
-  background:rgba(0,245,255,.1);border:1px solid rgba(0,245,255,.22);
-  border-radius:8px;padding:.15rem .45rem;
+@keyframes gbGlow{
+  0%,100%{border-color:rgba(255,255,255,.2);box-shadow:none}
+  50%{border-color:rgba(var(--acr),var(--acg),var(--acb),.6);box-shadow:0 0 12px rgba(var(--acr),var(--acg),var(--acb),.2)}
 }
-.cta-f{
-  flex-shrink:0;padding:.6rem 1rem;border:none;border-radius:10px;
-  font-family:'Orbitron',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.07em;
-  cursor:pointer;position:relative;overflow:hidden;
-  background:linear-gradient(135deg,#7b2fff,#00f5ff);color:#000;
-  box-shadow:0 4px 20px rgba(0,245,255,.3);transition:transform .2s;
-}
-.cta-f::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);
-  animation:sh 2.5s ease-in-out infinite}
-@keyframes sh{0%{left:-100%}60%,100%{left:150%}}
-.cta-f:active{transform:scale(.96)}
+.gt{display:flex;justify-content:space-around;width:100%}
+.gt span{border-radius:0 0 50% 50%;background:rgba(255,255,255,.04);border:1.5px dashed rgba(255,255,255,.2);border-top:none;flex-shrink:0}
+.s-king  .gt span{width:14px;height:14px}
+.s-mid   .gt span{width:11px;height:11px}
+.s-std   .gt span{width:8px;height:8px}
+.s-micro .gt span{width:6px;height:6px}
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━
-   SECONDARY GRID (3 spots)
-━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-#grid{
-  flex:1.4;min-height:0;
-  display:grid;grid-template-columns:1fr 1fr 1fr;
-  border-top:1px solid rgba(255,255,255,.07);
-  position:relative;z-index:10;
+.ghost-label{
+  font-family:'Orbitron',sans-serif;font-size:.44rem;color:rgba(255,255,255,.4);
+  letter-spacing:.08em;animation:glowTxt 2.5s ease-in-out infinite;
+  position:relative;z-index:10;text-align:center;
+  padding:0 .15rem;
+}
+.s-micro .ghost-label{font-size:.34rem}
+@keyframes glowTxt{
+  0%,100%{color:rgba(255,255,255,.3)}
+  50%{color:rgba(var(--acr),var(--acg),var(--acb),.8);text-shadow:0 0 8px rgba(var(--acr),var(--acg),var(--acb),.4)}
 }
 
-.mini{
-  position:relative;overflow:hidden;
-  display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
-  cursor:pointer;padding-bottom:.5rem;
-  border-right:1px solid rgba(255,255,255,.06);
+/* ── GHOST DASHED BORDER (king ghost) ── */
+.ghost-border{
+  position:absolute;inset:4px;border:1.5px dashed;border-radius:8px;pointer-events:none;
+  animation:dashSpin 20s linear infinite;opacity:.25;
 }
-.mini:last-child{border-right:none}
+@keyframes dashSpin{to{stroke-dashoffset:-100}}
 
-/* mini bg tones */
-.pd-mini{background:#120005}
-.pt-mini{background:#0d0600}
-.slot{background:#080810}
-
-.mini::before{content:'';position:absolute;inset:0;pointer-events:none}
-.pd-mini::before{background:radial-gradient(ellipse 100% 70% at 50% 0%,#ff006e20,transparent)}
-.pt-mini::before{background:radial-gradient(ellipse 100% 70% at 50% 0%,#f77f0020,transparent)}
-.slot::before{background:radial-gradient(ellipse 100% 70% at 50% 0%,rgba(255,255,255,.04),transparent)}
-
-/* mini avatar stage */
-.stage-m{
-  flex:1;min-height:0;width:100%;position:relative;
-  display:flex;align-items:center;justify-content:center;z-index:5;
-}
-.rm{position:absolute;border-radius:50%;border:1px solid;animation:rp 3s ease-in-out infinite}
-.rm1{width:90px;height:90px;opacity:.18}
-.rm2{width:115px;height:115px;opacity:.09;animation-delay:.5s}
-.pd-mini .rm{border-color:#ffbe0b}
-.pt-mini .rm{border-color:#fcbf49}
-.slot .rm{border-color:rgba(255,255,255,.25)}
-
-.av-m{
-  height:88px;width:auto;position:relative;z-index:6;
-  animation:fl var(--fa,3.5s) var(--fd,0s) ease-in-out infinite;
-  filter:drop-shadow(0 6px 16px rgba(0,0,0,.7));
-  transition:transform .15s ease;
-}
-.av-m:active{transform:scale(.9)!important}
-
-/* mini info */
-.mini-info{
-  text-align:center;position:relative;z-index:6;
-  display:flex;flex-direction:column;align-items:center;gap:.2rem;
-}
-.mini-nm{
-  font-family:'Orbitron',sans-serif;font-size:.52rem;font-weight:700;
-  letter-spacing:.08em;color:rgba(255,255,255,.7);white-space:nowrap;
-}
-.mini-badge{
-  font-size:.58rem;font-weight:700;letter-spacing:.06em;
-  padding:.15rem .5rem;border-radius:20px;animation:badgePop 2.5s ease-in-out infinite;
-}
-.pd-badge{color:#ffbe0b;background:rgba(255,190,11,.12);border:1px solid rgba(255,190,11,.22)}
-.pt-badge{color:#fcbf49;background:rgba(252,191,73,.12);border:1px solid rgba(252,191,73,.22)}
-.slot-badge{
-  color:rgba(255,255,255,.45);background:rgba(255,255,255,.06);
-  border:1px dashed rgba(255,255,255,.2);
-  animation:slotGlow 2s ease-in-out infinite;
-}
-@keyframes slotGlow{0%,100%{border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.45)}
-  50%{border-color:rgba(255,255,255,.5);color:rgba(255,255,255,.8)}}
-
-/* notification bubble */
-.notif{
-  position:absolute;top:.5rem;right:.5rem;z-index:20;
-  font-size:.5rem;font-weight:700;padding:.15rem .4rem;border-radius:20px;
-  opacity:0;transition:opacity .4s ease;pointer-events:none;
-}
-.notif.show{opacity:1}
-.nd{background:#ff006e;color:#fff}
-.nt{background:#f77f00;color:#000}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━
-   GHOST / SLOT AVATAR
-━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.ghost{
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  height:88px;width:64px;position:relative;z-index:6;
-  animation:ghostFloat 3s ease-in-out infinite;
-}
-@keyframes ghostFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-.ghost-body{
-  width:52px;height:62px;
-  background:rgba(255,255,255,.04);
-  border:1.5px dashed rgba(255,255,255,.22);
-  border-radius:48% 48% 38% 38%;
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Orbitron',sans-serif;font-size:1.4rem;color:rgba(255,255,255,.3);
-  position:relative;animation:ghostGlow 2s ease-in-out infinite;
-}
-@keyframes ghostGlow{
-  0%,100%{box-shadow:none;border-color:rgba(255,255,255,.22)}
-  50%{box-shadow:0 0 14px rgba(255,255,255,.12);border-color:rgba(255,255,255,.45)}
-}
-.ghost-tail{
-  width:52px;height:14px;position:relative;
-  display:flex;justify-content:space-around;align-items:flex-start;margin-top:-2px;
-}
-.ghost-tail span{
-  width:13px;height:13px;border-radius:0 0 50% 50%;
-  background:rgba(255,255,255,.04);border:1.5px dashed rgba(255,255,255,.22);
-  border-top:none;
-}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━
-   BOTTOM STRIP — PANCARTA IA
-━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* ══════════════════════════════════════════
+   STRIP
+══════════════════════════════════════════ */
 #strip{
-  height:56px;flex-shrink:0;
+  height:56px;flex-shrink:0;position:sticky;bottom:0;z-index:100;
   display:flex;align-items:center;justify-content:space-between;
-  padding:0 .9rem;
-  background:linear-gradient(90deg,rgba(123,47,255,.15),rgba(0,245,255,.08));
-  border-top:1px solid rgba(123,47,255,.3);position:relative;overflow:hidden;
+  padding:0 .9rem;background:rgba(0,0,0,.95);
+  border-top:1px solid rgba(255,255,255,.07);
+  position:relative;overflow:hidden;
 }
 #strip::before{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(90deg,transparent 0%,rgba(123,47,255,.08) 50%,transparent 100%);
-  animation:stripSweep 4s linear infinite;
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(90deg,rgba(252,209,22,.06),rgba(0,56,147,.06),rgba(206,17,38,.06));
+  animation:stripSweep 5s linear infinite;
 }
 @keyframes stripSweep{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
-.strip-l{display:flex;align-items:center;gap:.55rem;position:relative;z-index:2}
+
+.strip-l{display:flex;align-items:center;gap:.5rem;position:relative;z-index:2}
 .strip-icon{font-size:1.1rem}
-.strip-brand{font-family:'Orbitron',sans-serif;font-size:.68rem;font-weight:900;
-  background:linear-gradient(90deg,#7b2fff,#00f5ff);-webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;background-clip:text}
-.strip-sub{font-size:.55rem;color:rgba(255,255,255,.35);letter-spacing:.06em;margin-top:.05rem}
-.strip-cta{
-  flex-shrink:0;padding:.45rem .8rem;border:none;border-radius:8px;
-  font-family:'Orbitron',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.08em;
-  background:linear-gradient(135deg,#7b2fff,#00f5ff);color:#000;cursor:pointer;
-  position:relative;z-index:2;transition:transform .2s;box-shadow:0 2px 14px rgba(0,245,255,.25);
+.strip-txt{}
+.strip-t1{
+  font-family:'Orbitron',sans-serif;font-size:.62rem;font-weight:900;
+  color:#FCD116;letter-spacing:.06em;
 }
+.strip-t2{font-size:.55rem;color:rgba(255,255,255,.4);letter-spacing:.04em;margin-top:.05rem}
+.strip-cta{
+  flex-shrink:0;padding:.44rem .8rem;border:none;border-radius:8px;
+  font-family:'Orbitron',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.07em;
+  background:linear-gradient(135deg,#FCD116,#f0a500);color:#000;
+  cursor:pointer;position:relative;z-index:2;
+  transition:transform .2s;box-shadow:0 2px 14px rgba(252,209,22,.3);overflow:hidden;
+}
+.strip-cta::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);
+  animation:sh 2.5s ease-in-out infinite}
+@keyframes sh{0%{left:-100%}60%,100%{left:150%}}
 .strip-cta:active{transform:scale(.96)}
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━
-   SPARKLE PARTICLES
-━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.spark{
-  position:fixed;pointer-events:none;z-index:999;
-  animation:spk var(--dur,.75s) ease forwards;
+/* ══════════════════════════════════════════
+   BOTTOM SHEET
+══════════════════════════════════════════ */
+#bs-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:498;
+  opacity:0;pointer-events:none;transition:opacity .3s ease;backdrop-filter:blur(4px);
 }
-@keyframes spk{
-  0%{transform:translate(0,0)scale(1.2);opacity:1}
-  100%{transform:translate(var(--dx),var(--dy))scale(0);opacity:0}
+#bs-overlay.show{opacity:1;pointer-events:all}
+
+#bsheet{
+  position:fixed;bottom:0;left:0;right:0;z-index:499;
+  background:#0c0c18;border-radius:22px 22px 0 0;
+  border-top:1px solid rgba(255,255,255,.1);
+  transform:translateY(105%);transition:transform .38s cubic-bezier(.4,0,.2,1);
+  max-height:85dvh;overflow-y:auto;padding-bottom:env(safe-area-inset-bottom,16px);
 }
-/* ripple */
-@keyframes rout{to{transform:scale(2.8);opacity:0}}
+#bsheet::-webkit-scrollbar{display:none}
+#bsheet.open{transform:translateY(0)}
+
+.bs-handle{
+  width:38px;height:4px;border-radius:2px;background:rgba(255,255,255,.18);
+  margin:10px auto 0;
+}
+
+.bs-inner{padding:.8rem 1.1rem 1.4rem}
+
+/* bs header */
+.bs-tier-badge{
+  display:inline-flex;align-items:center;gap:.3rem;
+  font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  padding:.2rem .65rem;border-radius:20px;margin-bottom:.7rem;
+}
+
+/* bs avatar */
+.bs-av-wrap{
+  display:flex;justify-content:center;margin-bottom:.7rem;position:relative;
+}
+.bs-av-ring{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  border-radius:50%;border:1px solid;animation:rp 3s ease-in-out infinite;
+}
+.bs-av-ring.br1{width:130px;height:130px;opacity:.2}
+.bs-av-ring.br2{width:165px;height:165px;opacity:.1;animation-delay:.5s}
+.bs-av-svg{height:130px;width:auto;animation:fl 3.5s ease-in-out infinite;filter:drop-shadow(0 8px 24px rgba(0,0,0,.5))}
+.bs-ghost{
+  width:80px;height:94px;border-radius:50% 50% 38% 38%;
+  border:2px dashed;background:rgba(255,255,255,.04);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Orbitron',sans-serif;font-size:2rem;color:rgba(255,255,255,.3);
+  animation:gbGlow 2s ease-in-out infinite,fl 3s ease-in-out infinite;
+}
+
+/* bs name */
+.bs-name{font-family:'Orbitron',sans-serif;font-size:1.1rem;font-weight:900;color:#fff;text-align:center}
+.bs-sub{font-size:.7rem;color:rgba(255,255,255,.35);text-align:center;letter-spacing:.12em;text-transform:uppercase;margin-top:.2rem}
+
+/* score section */
+.bs-score-wrap{
+  margin:.9rem 0;padding:.8rem;
+  background:rgba(255,255,255,.04);border-radius:12px;
+  border:1px solid rgba(255,255,255,.07);
+}
+.bs-score-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:.5rem}
+.bs-score-label{font-size:.65rem;color:rgba(255,255,255,.5)}
+.bs-score-val{font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:900;color:#FCD116}
+.bs-rank{font-size:.6rem;padding:.15rem .45rem;border-radius:20px;font-weight:700}
+.bs-score-track{height:6px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden}
+.bs-score-prog{height:100%;border-radius:3px;transition:width .5s ease;min-width:4px}
+
+/* offer */
+.bs-offer-box{
+  background:rgba(255,255,255,.04);border-radius:12px;padding:.8rem;
+  border:1px solid rgba(255,255,255,.07);margin-bottom:.9rem;
+}
+.bs-offer-title{font-family:'Orbitron',sans-serif;font-size:.85rem;font-weight:700;color:#fff;margin-bottom:.2rem}
+.bs-offer-val{font-size:1.5rem;font-weight:700;font-family:'Orbitron',sans-serif}
+.bs-offer-desc{font-size:.72rem;color:rgba(255,255,255,.45);margin-top:.2rem;line-height:1.4}
+
+/* ghost pitch */
+.bs-ghost-pitch{text-align:center;padding:0 .2rem;margin-bottom:.9rem}
+.bs-ghost-title{font-family:'Orbitron',sans-serif;font-size:.95rem;font-weight:900;color:#fff;margin-bottom:.4rem;line-height:1.3}
+.bs-ghost-desc{font-size:.78rem;color:rgba(255,255,255,.5);line-height:1.5;margin-bottom:.6rem}
+.bs-ghost-tier{
+  display:inline-block;font-size:.62rem;font-weight:700;letter-spacing:.1em;
+  padding:.2rem .7rem;border-radius:20px;margin-bottom:.5rem;
+}
+.bs-ghost-perks{text-align:left;display:flex;flex-direction:column;gap:.3rem;margin-top:.5rem}
+.bs-ghost-perk{font-size:.72rem;color:rgba(255,255,255,.6);display:flex;align-items:center;gap:.4rem}
+
+/* tap button */
+.bs-tap-btn{
+  width:100%;padding:.85rem;border:none;border-radius:14px;
+  font-family:'Orbitron',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.07em;
+  cursor:pointer;position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;gap:.5rem;
+  margin-bottom:.6rem;transition:transform .15s ease;
+}
+.bs-tap-btn:active{transform:scale(.97)}
+.bs-tap-btn::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);
+  animation:sh 2.5s ease-in-out infinite}
+.bs-tap-count{font-size:1.1rem}
+
+.bs-nav-btn{
+  width:100%;padding:.7rem;border:1px solid rgba(255,255,255,.15);
+  border-radius:12px;background:transparent;color:rgba(255,255,255,.7);
+  font-family:'Orbitron',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.07em;
+  cursor:pointer;transition:all .2s ease;
+}
+.bs-nav-btn:active{background:rgba(255,255,255,.08)}
+
+/* ══════════════════════════════════════════
+   TICKER TAPE
+══════════════════════════════════════════ */
+#ticker{
+  height:22px;background:rgba(0,0,0,.8);border-bottom:1px solid rgba(255,255,255,.06);
+  overflow:hidden;position:relative;flex-shrink:0;
+}
+.ticker-inner{
+  display:flex;align-items:center;height:100%;
+  white-space:nowrap;
+  animation:tickerScroll 30s linear infinite;
+}
+@keyframes tickerScroll{0%{transform:translateX(100vw)}100%{transform:translateX(-100%)}}
+.ticker-item{font-size:.5rem;color:rgba(255,255,255,.35);letter-spacing:.1em;padding:0 1.5rem}
+.ticker-item.hot{color:#FCD116}
+
+/* ══════════════════════════════════════════
+   UTILITIES
+══════════════════════════════════════════ */
+.spark{position:fixed;pointer-events:none;z-index:9999;animation:spk var(--dur,.7s) ease forwards}
+@keyframes spk{0%{transform:translate(0,0)scale(1.2);opacity:1}100%{transform:translate(var(--dx),var(--dy))scale(0);opacity:0}}
+@keyframes rout{to{transform:scale(3);opacity:0}}
   </style>
 </head>
 <body>
 
-<!-- ═══════════════════════
-     INTRO
-═══════════════════════ -->
+<!-- ════════════════════════════════
+     INTRO (COLOMBIA)
+════════════════════════════════ -->
 <div id="intro">
+  <div class="i-flag"><div class="i-flag-y"></div><div class="i-flag-b"></div><div class="i-flag-r"></div></div>
   <span class="i-icon">📡</span>
   <h1 class="i-t1">ROBAYO AUTOM.</h1>
   <p class="i-t2">PANCARTA IA · VITRINA DIGITAL</p>
+  <p class="i-tagline">La vitrina digital para los<br>negocios de <strong>Colombia</strong></p>
   <div class="i-bar"><div class="i-fill"></div></div>
   <p class="i-hint">toca para entrar</p>
 </div>
 
-<!-- ═══════════════════════
+<!-- ════════════════════════════════
      APP
-═══════════════════════ -->
+════════════════════════════════ -->
 <div id="app">
 
   <!-- TOPBAR -->
   <header id="topbar">
     <span class="tb-brand">Robayo Automatizaciones</span>
-    <div class="tb-right">
-      <span class="tb-tag">PANCARTA IA</span>
-      <div class="tb-dot"></div>
+    <div class="tb-king" id="tb-king">
+      <span>👑</span>
+      <span id="tb-king-name">KRONOS</span>
+      <span class="tb-king-val" id="tb-king-score">·0</span>
     </div>
+    <div class="tb-dot"></div>
   </header>
 
-  <!-- ─────────────────────
-       FEATURED: KRONOS OPERATOR (PREMIUM)
-  ───────────────────── -->
-  <section id="featured">
-    <div class="stars" id="st0"></div>
-    <div class="tier-badge">👑 SPOT PREMIUM</div>
-
-    <div class="stage-f pk" id="av-k">
-      <div class="ring r1"></div>
-      <div class="ring r2"></div>
-      <div class="ring r3"></div>
-      <!-- KRONOS OPERATOR AVATAR -->
-      <svg class="av-f" viewBox="0 0 160 220" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="gkb2" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#7b2fff"/>
-            <stop offset="100%" stop-color="#3a0080"/>
-          </linearGradient>
-          <linearGradient id="gkh2" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#12123a"/>
-            <stop offset="100%" stop-color="#0a0a1f"/>
-          </linearGradient>
-        </defs>
-        <ellipse cx="80" cy="115" rx="52" ry="50" fill="#7b2fff" opacity=".07">
-          <animate attributeName="ry" values="50;58;50" dur="3s" repeatCount="indefinite"/>
-          <animate attributeName="opacity" values=".07;.14;.07" dur="3s" repeatCount="indefinite"/>
-        </ellipse>
-        <line x1="80" y1="6" x2="80" y2="26" stroke="#00f5ff" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="80" cy="5" r="5" fill="#00f5ff">
-          <animate attributeName="r" values="5;7;5" dur="1.4s" repeatCount="indefinite"/>
-          <animate attributeName="opacity" values="1;.2;1" dur="1.4s" repeatCount="indefinite"/>
-        </circle>
-        <rect x="46" y="26" width="68" height="54" rx="10" fill="url(#gkh2)" stroke="#00f5ff" stroke-width="1.5"/>
-        <rect x="53" y="40" width="54" height="17" rx="5" fill="#00f5ff" opacity=".88">
-          <animate attributeName="opacity" values=".88;.35;.88" dur="4s" repeatCount="indefinite"/>
-          <animate attributeName="width" values="54;58;54" dur="4s" repeatCount="indefinite"/>
-          <animate attributeName="x" values="53;51;53" dur="4s" repeatCount="indefinite"/>
-        </rect>
-        <line x1="53" y1="48" x2="107" y2="48" stroke="rgba(255,255,255,.3)" stroke-width=".8">
-          <animate attributeName="x1" values="53;107;53" dur="2s" repeatCount="indefinite"/>
-          <animate attributeName="x2" values="107;53;107" dur="2s" repeatCount="indefinite"/>
-        </line>
-        <rect x="55" y="65" width="7" height="5" rx="1.5" fill="#00f5ff" opacity=".5"/>
-        <rect x="66" y="65" width="7" height="5" rx="1.5" fill="#00f5ff" opacity=".5"/>
-        <rect x="77" y="65" width="7" height="5" rx="1.5" fill="#00f5ff" opacity=".5"/>
-        <rect x="88" y="65" width="7" height="5" rx="1.5" fill="#00f5ff" opacity=".5"/>
-        <rect x="99" y="65" width="7" height="5" rx="1.5" fill="#00f5ff" opacity=".5"/>
-        <circle cx="46" cy="53" r="5" fill="#0a0a1f" stroke="#7b2fff" stroke-width="1.5"/>
-        <circle cx="114" cy="53" r="5" fill="#0a0a1f" stroke="#7b2fff" stroke-width="1.5"/>
-        <rect x="70" y="80" width="20" height="14" rx="3" fill="#16162e"/>
-        <rect x="36" y="92" width="88" height="74" rx="12" fill="url(#gkb2)" stroke="#7b2fff" stroke-width="1"/>
-        <rect x="55" y="106" width="50" height="32" rx="6" fill="#08081a" stroke="#00f5ff" stroke-width=".8"/>
-        <line x1="60" y1="116" x2="100" y2="116" stroke="#00f5ff" stroke-width=".7" opacity=".55"/>
-        <line x1="60" y1="122" x2="98" y2="122" stroke="#7b2fff" stroke-width=".7" opacity=".55"/>
-        <line x1="60" y1="128" x2="94" y2="128" stroke="#00f5ff" stroke-width=".7" opacity=".55"/>
-        <circle cx="80" cy="122" r="5" fill="#00f5ff">
-          <animate attributeName="r" values="5;7;5" dur=".9s" repeatCount="indefinite"/>
-          <animate attributeName="opacity" values=".9;.2;.9" dur=".9s" repeatCount="indefinite"/>
-        </circle>
-        <rect x="12" y="94" width="22" height="58" rx="10" fill="url(#gkb2)" stroke="#7b2fff" stroke-width="1"/>
-        <rect x="10" y="149" width="26" height="12" rx="6" fill="#16162e"/>
-        <g>
-          <animateTransform attributeName="transform" type="rotate"
-            values="0 126 96; -38 126 96; 0 126 96" dur="2s" repeatCount="indefinite"/>
-          <rect x="122" y="86" width="22" height="55" rx="10" fill="url(#gkb2)" stroke="#7b2fff" stroke-width="1"/>
-          <rect x="120" y="85" width="26" height="12" rx="6" fill="#16162e"/>
-        </g>
-        <rect x="48" y="164" width="26" height="44" rx="8" fill="url(#gkb2)" stroke="#7b2fff" stroke-width="1"/>
-        <rect x="86" y="164" width="26" height="44" rx="8" fill="url(#gkb2)" stroke="#7b2fff" stroke-width="1"/>
-        <rect x="42" y="202" width="34" height="11" rx="5" fill="#16162e"/>
-        <rect x="84" y="202" width="34" height="11" rx="5" fill="#16162e"/>
-      </svg>
+  <!-- TICKER -->
+  <div id="ticker">
+    <div class="ticker-inner" id="tickerInner">
+      <span class="ticker-item hot">🔥 KRONOS OPERATOR lidera la vitrina</span>
+      <span class="ticker-item">· ¿Estás en Colombia y tu negocio no está acá? ·</span>
+      <span class="ticker-item hot">📡 Spots disponibles — Reserva el tuyo</span>
+      <span class="ticker-item">· Cada tap cuenta — tu comunidad te apoya ·</span>
+      <span class="ticker-item hot">👑 ¿QUIÉN SERÁ EL REY DE LA VITRINA?</span>
+      <span class="ticker-item">· Bogotá · Medellín · Cali · Barranquilla · y toda Colombia ·</span>
     </div>
+  </div>
 
-    <div class="feat-info">
-      <div class="feat-left">
-        <div class="feat-nm">KRONOS OPERATOR</div>
-        <div class="feat-url">kronolog.ai · @kronosoperator</div>
-        <div class="feat-offer">
-          <span class="feat-offer-val">30 MIN GRATIS</span>
-          <span>Consultoría IA para tu negocio</span>
-        </div>
-      </div>
-      <button class="cta-f" onclick="ctaClick(this,'https://kronolog.ai')">AGENDA →</button>
-    </div>
-  </section>
+  <!-- VITRINA GRID (generated by JS) -->
+  <div id="vitrina"></div>
 
-  <!-- ─────────────────────
-       SECONDARY GRID
-  ───────────────────── -->
-  <div id="grid">
-
-    <!-- BELLA ESTÉTICA -->
-    <div class="mini pd-mini" id="spot-d">
-      <div class="stars" id="st1"></div>
-      <div class="notif nd" id="nd">💄 HOY</div>
-      <div class="stage-m" id="av-d">
-        <div class="rm rm1"></div><div class="rm rm2"></div>
-        <svg class="av-m" style="--fa:3.2s;--fd:.4s" viewBox="0 0 160 220" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="gdv2" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#ff006e"/><stop offset="100%" stop-color="#c90057"/>
-            </linearGradient>
-            <linearGradient id="gsk2" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#f5c5a3"/><stop offset="100%" stop-color="#e8a882"/>
-            </linearGradient>
-          </defs>
-          <text x="12" y="42" font-size="13" fill="#ffbe0b" opacity=".7">✨</text>
-          <text x="122" y="52" font-size="13" fill="#ffbe0b" opacity=".7">✨</text>
-          <ellipse cx="80" cy="46" rx="36" ry="42" fill="#180030"/>
-          <ellipse cx="80" cy="62" rx="30" ry="33" fill="url(#gsk2)"/>
-          <path d="M50 46 Q38 74 44 96" stroke="#180030" stroke-width="11" fill="none" stroke-linecap="round"/>
-          <path d="M110 46 Q122 74 116 96" stroke="#180030" stroke-width="11" fill="none" stroke-linecap="round"/>
-          <path d="M50 30 L57 18 L65 28 L72 14 L80 26 L88 14 L95 28 L103 18 L110 30" stroke="#ffbe0b" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="80" cy="26" r="4.5" fill="#ffbe0b"><animate attributeName="opacity" values="1;.3;1" dur="1.8s" repeatCount="indefinite"/></circle>
-          <ellipse cx="68" cy="58" rx="7" ry="8" fill="#180030"/>
-          <ellipse cx="92" cy="58" rx="7" ry="8" fill="#180030"/>
-          <circle cx="70" cy="56" r="2.5" fill="#fff"/>
-          <circle cx="94" cy="56" r="2.5" fill="#fff"/>
-          <ellipse cx="56" cy="72" rx="11" ry="6" fill="#ff006e" opacity=".22"/>
-          <ellipse cx="104" cy="72" rx="11" ry="6" fill="#ff006e" opacity=".22"/>
-          <path d="M70 82 Q80 92 90 82" stroke="#ff006e" stroke-width="3" fill="none" stroke-linecap="round"/>
-          <rect x="73" y="93" width="14" height="14" rx="3" fill="url(#gsk2)"/>
-          <path d="M38 108 Q50 96 72 100 L80 108 L88 100 Q110 96 122 108 L120 168 Q80 180 40 168 Z" fill="url(#gdv2)"/>
-          <path d="M40 110 Q28 134 32 160" stroke="#f5c5a3" stroke-width="15" fill="none" stroke-linecap="round"/>
-          <line x1="32" y1="160" x2="22" y2="183" stroke="#8b5e3c" stroke-width="5" stroke-linecap="round"/>
-          <ellipse cx="19" cy="188" rx="7" ry="3.5" fill="#ff006e" transform="rotate(-25 19 188)"/>
-          <g>
-            <animateTransform attributeName="transform" type="rotate" values="0 120 112; -32 120 112; 0 120 112" dur="2s" repeatCount="indefinite"/>
-            <path d="M120 112 Q132 90 128 70" stroke="#f5c5a3" stroke-width="15" fill="none" stroke-linecap="round"/>
-            <ellipse cx="128" cy="68" rx="11" ry="13" fill="url(#gsk2)"/>
-          </g>
-          <rect x="57" y="166" width="24" height="44" rx="8" fill="#c90057"/>
-          <rect x="81" y="166" width="24" height="44" rx="8" fill="#c90057"/>
-          <ellipse cx="68" cy="210" rx="15" ry="6" fill="#ffbe0b"/>
-          <ellipse cx="92" cy="210" rx="15" ry="6" fill="#ffbe0b"/>
-        </svg>
-      </div>
-      <div class="mini-info">
-        <div class="mini-nm">BELLA EST.</div>
-        <div class="mini-badge pd-badge">💄 20% OFF</div>
-      </div>
-    </div>
-
-    <!-- TURBO MECÁNICA -->
-    <div class="mini pt-mini" id="spot-t">
-      <div class="stars" id="st2"></div>
-      <div class="notif nt" id="nt">🔧 NUEVO</div>
-      <div class="stage-m" id="av-t">
-        <div class="rm rm1"></div><div class="rm rm2"></div>
-        <svg class="av-m" style="--fa:4s;--fd:.8s" viewBox="0 0 160 220" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="gtb2" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#f77f00"/><stop offset="100%" stop-color="#d06500"/>
-            </linearGradient>
-            <linearGradient id="gst2" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#c68642"/><stop offset="100%" stop-color="#a0693a"/>
-            </linearGradient>
-          </defs>
-          <ellipse cx="80" cy="60" rx="32" ry="34" fill="url(#gst2)"/>
-          <path d="M44 50 Q44 18 80 18 Q116 18 116 50 Z" fill="#fcbf49"/>
-          <rect x="38" y="47" width="84" height="10" rx="4" fill="#f77f00"/>
-          <rect x="36" y="48" width="88" height="6" rx="3" fill="#d06500"/>
-          <ellipse cx="68" cy="60" rx="7" ry="7" fill="#1a0800"/>
-          <ellipse cx="92" cy="60" rx="7" ry="7" fill="#1a0800"/>
-          <circle cx="70" cy="58" r="2.5" fill="#fff"/>
-          <circle cx="94" cy="58" r="2.5" fill="#fff"/>
-          <path d="M60 51 Q68 47 76 50" stroke="#1a0800" stroke-width="3" fill="none" stroke-linecap="round"/>
-          <path d="M84 50 Q92 47 100 51" stroke="#1a0800" stroke-width="3" fill="none" stroke-linecap="round"/>
-          <path d="M66 76 Q80 90 94 76" stroke="#1a0800" stroke-width="3" fill="none" stroke-linecap="round"/>
-          <rect x="72" y="92" width="16" height="13" rx="3" fill="url(#gst2)"/>
-          <path d="M32 106 Q46 94 70 98 L80 108 L90 98 Q114 94 128 106 L126 172 Q80 184 34 172 Z" fill="#2d2d2d"/>
-          <rect x="77" y="104" width="6" height="52" rx="3" fill="#3a3a3a"/>
-          <rect x="32" y="155" width="96" height="7" rx="2" fill="#f77f00" opacity=".65"/>
-          <path d="M34 108 Q20 134 24 162" stroke="#2d2d2d" stroke-width="20" fill="none" stroke-linecap="round"/>
-          <rect x="15" y="155" width="9" height="30" rx="3" fill="#999" transform="rotate(-15 15 155)"/>
-          <ellipse cx="11" cy="155" rx="9" ry="6" fill="#999" transform="rotate(-15 11 155)"/>
-          <ellipse cx="27" cy="183" rx="9" ry="6" fill="#999" transform="rotate(-15 27 183)"/>
-          <g>
-            <animateTransform attributeName="transform" type="rotate" values="0 124 108; -36 124 108; 0 124 108" dur="2s" repeatCount="indefinite"/>
-            <path d="M124 108 Q140 86 134 64" stroke="#2d2d2d" stroke-width="20" fill="none" stroke-linecap="round"/>
-            <path d="M124 108 Q140 86 134 64" stroke="#383838" stroke-width="14" fill="none" stroke-linecap="round"/>
-            <ellipse cx="134" cy="62" rx="13" ry="15" fill="url(#gst2)"/>
-          </g>
-          <rect x="50" y="170" width="26" height="42" rx="8" fill="#1a1a1a"/>
-          <rect x="84" y="170" width="26" height="42" rx="8" fill="#1a1a1a"/>
-          <rect x="44" y="206" width="36" height="12" rx="5" fill="#f77f00"/>
-          <rect x="80" y="206" width="36" height="12" rx="5" fill="#f77f00"/>
-        </svg>
-      </div>
-      <div class="mini-info">
-        <div class="mini-nm">TURBO MEC.</div>
-        <div class="mini-badge pt-badge">🔧 $50k OFF</div>
-      </div>
-    </div>
-
-    <!-- ¿TU MARCA AQUÍ? -->
-    <div class="mini slot" id="spot-s" onclick="slotClick()">
-      <div class="stage-m" id="av-s">
-        <div class="rm rm1"></div><div class="rm rm2"></div>
-        <div class="ghost">
-          <div class="ghost-body">?</div>
-          <div class="ghost-tail">
-            <span></span><span></span><span></span>
-          </div>
-        </div>
-      </div>
-      <div class="mini-info">
-        <div class="mini-nm" style="color:rgba(255,255,255,.5)">¿TU MARCA?</div>
-        <div class="mini-badge slot-badge">+ RESERVAR</div>
-      </div>
-    </div>
-
-  </div><!-- end #grid -->
-
-  <!-- ─────────────────────
-       BOTTOM STRIP — PANCARTA IA
-  ───────────────────── -->
+  <!-- STRIP -->
   <div id="strip">
     <div class="strip-l">
       <span class="strip-icon">📡</span>
-      <div>
-        <div class="strip-brand">PANCARTA IA</div>
-        <div class="strip-sub">ponemos tu negocio en la vitrina digital</div>
+      <div class="strip-txt">
+        <div class="strip-t1">¡EMPRESARIO!</div>
+        <div class="strip-t2">ponemos tu negocio en la vitrina digital</div>
       </div>
     </div>
-    <button class="strip-cta" onclick="ctaClick(this,'https://kronolog.ai')">ANÚNCIATE →</button>
+    <button class="strip-cta" onclick="stripCta()">QUIERO MI SPOT →</button>
   </div>
 
-</div><!-- end #app -->
+</div><!-- #app -->
+
+<!-- ════════════════════════════════
+     BOTTOM SHEET
+════════════════════════════════ -->
+<div id="bs-overlay" onclick="closeBS()"></div>
+<div id="bsheet">
+  <div class="bs-handle"></div>
+  <div class="bs-inner" id="bs-inner"><!-- filled by JS --></div>
+</div>
 
 <script>
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━
-   INTRO
-━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-const intro = document.getElementById('intro');
-const dismiss = () => intro.classList.add('out');
-setTimeout(dismiss, 3200);
-intro.addEventListener('click', dismiss);
+/* ══════════════════════════════════════════════
+   FIREBASE SYNC (opcional — cross-device)
+   ──────────────────────────────────────────────
+   1. Ve a firebase.google.com → nuevo proyecto
+   2. Realtime Database → crear (modo test)
+   3. Copia la URL y pégala abajo
+   ══════════════════════════════════════════════ */
+const FIREBASE_URL = ''; // ej: 'https://pancartaia-xxxx-rtdb.firebaseio.com'
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━
-   SPARKLE BURST
-━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-const SETS = [
-  ['⚡','🤖','💡','✦','◆','●'],
-  ['💄','💅','✨','💖','⭐','✦'],
-  ['🔧','⚙️','💥','🔩','✦','◆'],
-  ['?','✨','💫','★','✦','◆']
+/* ══════════════════════════════════════════════
+   SPOTS DATA
+══════════════════════════════════════════════ */
+const SPOTS = [
+  {
+    id:'kronos', tier:'king', ghost:false,
+    name:'KRONOS OPERATOR', sub:'youtube.com/@kronosoperator',
+    badge:'⚡ LANZAMIENTO', badgeColor:'#00f5ff',
+    offer:'Consultoría IA · 30 Min', offerVal:'GRATIS',
+    offerDesc:'Automatiza tu negocio con Inteligencia Artificial',
+    ctaTxt:'VER CANAL →', ctaUrl:'https://www.youtube.com/@kronosoperator',
+    bg:'#06060f', ac:[0,245,255], ac2:[123,47,255],
+    avatar:'kronos', float:'3.5s', floatDel:'0s', notif:'⚡ NUEVO'
+  },
+  {
+    id:'bella', tier:'mid', ghost:false,
+    name:'BELLA ESTÉTICA', sub:'bellastetica.co',
+    badge:'💄 OFERTA HOY', badgeColor:'#ffbe0b',
+    offer:'Maquillaje Pro + Pestañas', offerVal:'20% OFF',
+    offerDesc:'Para eventos, grados y celebraciones especiales',
+    ctaTxt:'RESERVAR CITA →', ctaUrl:'#',
+    bg:'#120005', ac:[255,190,11], ac2:[255,0,110],
+    avatar:'bella', float:'3.2s', floatDel:'.4s', notif:'💄 HOY'
+  },
+  {
+    id:'turbo', tier:'mid', ghost:false,
+    name:'TURBO MECÁNICA', sub:'turbomecanica.co',
+    badge:'🔧 PROMO', badgeColor:'#fcbf49',
+    offer:'Revisión General + Diagnóstico', offerVal:'$50k OFF',
+    offerDesc:'Aceite · Frenos · Diagnóstico electrónico incluido',
+    ctaTxt:'PEDIR TURNO →', ctaUrl:'#',
+    bg:'#0d0600', ac:[252,191,73], ac2:[247,127,0],
+    avatar:'turbo', float:'4s', floatDel:'.8s', notif:'🔧 FLASH'
+  },
+  /* ── GHOST SPOTS ── */
+  {id:'s4', tier:'std', ghost:true, bg:'#080810', ac:[123,47,255], ac2:[0,245,255], float:'3.8s', floatDel:'.2s'},
+  {id:'s5', tier:'std', ghost:true, bg:'#0a0808', ac:[247,37,133], ac2:[255,0,110], float:'3.3s', floatDel:'1s'},
+  {id:'s6', tier:'std', ghost:true, bg:'#060810', ac:[0,245,255], ac2:[123,47,255], float:'4.2s', floatDel:'.6s'},
+  {id:'s7', tier:'std', ghost:true, bg:'#0a0700', ac:[252,191,73], ac2:[247,127,0], float:'3.6s', floatDel:'1.4s'},
+  {id:'s8', tier:'std', ghost:true, bg:'#080810', ac:[123,47,255], ac2:[247,37,133], float:'3.9s', floatDel:'.3s'},
+  {id:'s9', tier:'std', ghost:true, bg:'#060506', ac:[255,0,110], ac2:[247,37,133], float:'3.4s', floatDel:'.9s'},
+  {id:'s10',tier:'micro',ghost:true, bg:'#07070e', ac:[123,47,255], ac2:[0,245,255], float:'3.5s', floatDel:'0s'},
+  {id:'s11',tier:'micro',ghost:true, bg:'#080808', ac:[255,0,110], ac2:[247,37,133], float:'3.7s', floatDel:'.5s'},
+  {id:'s12',tier:'micro',ghost:true, bg:'#07070e', ac:[0,245,255], ac2:[123,47,255], float:'3.2s', floatDel:'1.1s'},
+  {id:'s13',tier:'micro',ghost:true, bg:'#080708', ac:[252,191,73], ac2:[247,127,0], float:'4.1s', floatDel:'.7s'},
+  {id:'s14',tier:'micro',ghost:true, bg:'#07070e', ac:[247,37,133], ac2:[255,0,110], float:'3.6s', floatDel:'1.3s'},
+  {id:'s15',tier:'micro',ghost:true, bg:'#080808', ac:[123,47,255], ac2:[0,245,255], float:'3.9s', floatDel:'.2s'},
 ];
 
-function burst(cx, cy, set, count=9) {
-  for (let n = 0; n < count; n++) {
-    const sp = document.createElement('div');
-    sp.className = 'spark';
-    const angle = (n / count) * Math.PI * 2 + Math.random() * .4;
-    const dist = 45 + Math.random() * 65;
-    sp.textContent = set[Math.floor(Math.random() * set.length)];
-    sp.style.cssText = `
-      left:${cx}px;top:${cy}px;font-size:${.8+Math.random()*.7}rem;
-      --dx:${Math.cos(angle)*dist}px;
-      --dy:${Math.sin(angle)*dist - 35}px;
-      --dur:${.55+Math.random()*.3}s;
-      animation-delay:${Math.random()*.1}s;
-    `;
-    document.body.appendChild(sp);
-    sp.addEventListener('animationend', () => sp.remove());
-  }
+const TIER_LABELS = {king:'SPOT PREMIUM',mid:'SPOT ESTÁNDAR',std:'SPOT BÁSICO',micro:'SPOT MINI'};
+const TIER_COLORS = {king:'#FCD116',mid:'#00f5ff',std:'#7b2fff',micro:'rgba(255,255,255,.4)'};
+const TIER_DESC = {
+  king:'El más visible · Tamaño máximo · Primera impresión',
+  mid:'Gran visibilidad · Avatar animado · Oferta destacada',
+  std:'Presente en la vitrina · Tu marca siempre activa',
+  micro:'Siempre visible · Precio más accesible'
+};
+
+/* ══════════════════════════════════════════════
+   SCORE SYSTEM
+══════════════════════════════════════════════ */
+let SCORES = {};
+try { SCORES = JSON.parse(localStorage.getItem('pancarta_v3') || '{}'); } catch(e) {}
+
+function saveScores() {
+  try { localStorage.setItem('pancarta_v3', JSON.stringify(SCORES)); } catch(e) {}
+  if (FIREBASE_URL) syncFirebase();
 }
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━
-   WEB AUDIO BOOP
-━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-let audioCtx = null;
-function boop(freq=440, type='sine', dur=.18) {
+async function syncFirebase() {
   try {
-    if (!audioCtx) audioCtx = new (window.AudioContext||window.webkitAudioContext)();
-    const o = audioCtx.createOscillator();
-    const g = audioCtx.createGain();
-    o.connect(g); g.connect(audioCtx.destination);
-    o.type = type; o.frequency.value = freq;
-    g.gain.setValueAtTime(.08, audioCtx.currentTime);
-    g.gain.exponentialRampToValueAtTime(.001, audioCtx.currentTime + dur);
-    o.start(); o.stop(audioCtx.currentTime + dur);
+    await fetch(`${FIREBASE_URL}/scores.json`, {
+      method:'PATCH',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(SCORES)
+    });
   } catch(e) {}
 }
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━
-   AVATAR BOUNCE
-━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-function bounceAv(svg, scale=1.15, rot=6) {
-  svg.style.transition = 'transform .12s ease';
-  svg.style.transform = `scale(${scale}) rotate(${rot}deg)`;
-  setTimeout(() => {
-    svg.style.transform = `scale(.96) rotate(${-rot*.3}deg)`;
-    setTimeout(() => { svg.style.transform = ''; }, 120);
-  }, 130);
+async function fetchFirebase() {
+  if (!FIREBASE_URL) return;
+  try {
+    const r = await fetch(`${FIREBASE_URL}/scores.json`);
+    const d = await r.json();
+    if (d) { Object.assign(SCORES, d); saveScores(); updateAllUI(); }
+  } catch(e) {}
 }
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━
-   TAP HANDLERS
-━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-const avK = document.getElementById('av-k');
-const avD = document.getElementById('av-d');
-const avT = document.getElementById('av-t');
-const avS = document.getElementById('av-s');
+function getMaxScore() {
+  const activeIds = SPOTS.filter(s=>!s.ghost).map(s=>s.id);
+  return Math.max(1, ...activeIds.map(id => SCORES[id] || 0));
+}
 
-function attachTap(el, setIdx, freqs) {
-  el.addEventListener('click', e => {
-    const r = el.getBoundingClientRect();
-    const cx = r.left + r.width/2, cy = r.top + r.height/2;
-    burst(cx, cy, SETS[setIdx]);
-    const svg = el.querySelector('.av-f,.av-m');
-    if (svg) bounceAv(svg);
-    const ghost = el.querySelector('.ghost-body');
-    if (ghost) { ghost.style.transform='scale(1.2)'; setTimeout(()=>ghost.style.transform='',300); }
-    freqs.forEach((f,i) => setTimeout(() => boop(f), i*60));
+function getKingId() {
+  const active = SPOTS.filter(s=>!s.ghost);
+  let king = active[0];
+  active.forEach(s => { if((SCORES[s.id]||0) > (SCORES[king.id]||0)) king = s; });
+  return king.id;
+}
+
+function addTap(spotId, silent=false) {
+  SCORES[spotId] = (SCORES[spotId] || 0) + 1;
+  saveScores();
+  updateSpotUI(spotId);
+  updateKingUI();
+  if (!silent) animateTapCount(spotId);
+}
+
+function animateTapCount(spotId) {
+  const el = document.getElementById(`sc-${spotId}`);
+  if (!el) return;
+  el.style.transform = 'scale(1.6)';
+  el.style.color = '#FCD116';
+  setTimeout(() => { el.style.transform = ''; el.style.color = ''; }, 250);
+}
+
+function updateSpotUI(spotId) {
+  const cnt = document.getElementById(`sc-${spotId}`);
+  const bar = document.getElementById(`sb-${spotId}`);
+  const score = SCORES[spotId] || 0;
+  const max = getMaxScore();
+  if (cnt) cnt.textContent = score + ' ♥';
+  if (bar) { bar.style.width = `${Math.min(100,(score/max)*100)}%`; }
+}
+
+function updateAllUI() {
+  SPOTS.forEach(s => { if(!s.ghost) updateSpotUI(s.id); });
+  updateKingUI();
+}
+
+function updateKingUI() {
+  const kingId = getKingId();
+  SPOTS.forEach(s => {
+    const el = document.getElementById(`spot-${s.id}`);
+    if (!el) return;
+    el.classList.toggle('is-king', s.id === kingId);
   });
+  const kingSpot = SPOTS.find(s=>s.id===kingId);
+  const score = SCORES[kingId] || 0;
+  const nameEl = document.getElementById('tb-king-name');
+  const scoreEl = document.getElementById('tb-king-score');
+  if (nameEl) nameEl.textContent = kingSpot ? kingSpot.name.split(' ')[0] : '';
+  if (scoreEl) scoreEl.textContent = `·${score}`;
 }
 
-attachTap(avK, 0, [523, 659, 784]);
-attachTap(avD, 1, [659, 784]);
-attachTap(avT, 2, [349, 440]);
-attachTap(avS, 3, [880, 1046]);
+/* ══════════════════════════════════════════════
+   SVG AVATARS
+══════════════════════════════════════════════ */
+const SVG = {};
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━
-   CTA RIPPLE + NAVIGATE
-━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+SVG.kronos = `<svg viewBox="0 0 160 220" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="kb" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7b2fff"/><stop offset="100%" stop-color="#3a0080"/>
+    </linearGradient>
+    <linearGradient id="kh" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#12123a"/><stop offset="100%" stop-color="#0a0a1f"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="80" cy="115" rx="52" ry="50" fill="#7b2fff" opacity=".07">
+    <animate attributeName="ry" values="50;58;50" dur="3s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values=".07;.14;.07" dur="3s" repeatCount="indefinite"/>
+  </ellipse>
+  <line x1="80" y1="6" x2="80" y2="26" stroke="#00f5ff" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="80" cy="5" r="5" fill="#00f5ff">
+    <animate attributeName="r" values="5;7;5" dur="1.4s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="1;.2;1" dur="1.4s" repeatCount="indefinite"/>
+  </circle>
+  <rect x="46" y="26" width="68" height="54" rx="10" fill="url(#kh)" stroke="#00f5ff" stroke-width="1.5"/>
+  <rect x="53" y="40" width="54" height="17" rx="5" fill="#00f5ff" opacity=".88">
+    <animate attributeName="opacity" values=".88;.35;.88" dur="4s" repeatCount="indefinite"/>
+    <animate attributeName="width" values="54;58;54" dur="4s" repeatCount="indefinite"/>
+    <animate attributeName="x" values="53;51;53" dur="4s" repeatCount="indefinite"/>
+  </rect>
+  <line x1="53" y1="48" x2="107" y2="48" stroke="rgba(255,255,255,.3)" stroke-width=".8">
+    <animate attributeName="x1" values="53;107;53" dur="2s" repeatCount="indefinite"/>
+    <animate attributeName="x2" values="107;53;107" dur="2s" repeatCount="indefinite"/>
+  </line>
+  <rect x="55" y="65" width="7" height="5" rx="1.5" fill="#00f5ff" opacity=".5"/>
+  <rect x="66" y="65" width="7" height="5" rx="1.5" fill="#00f5ff" opacity=".5"/>
+  <rect x="77" y="65" width="7" height="5" rx="1.5" fill="#00f5ff" opacity=".5"/>
+  <rect x="88" y="65" width="7" height="5" rx="1.5" fill="#00f5ff" opacity=".5"/>
+  <rect x="99" y="65" width="7" height="5" rx="1.5" fill="#00f5ff" opacity=".5"/>
+  <circle cx="46" cy="53" r="5" fill="#0a0a1f" stroke="#7b2fff" stroke-width="1.5"/>
+  <circle cx="114" cy="53" r="5" fill="#0a0a1f" stroke="#7b2fff" stroke-width="1.5"/>
+  <rect x="70" y="80" width="20" height="14" rx="3" fill="#16162e"/>
+  <rect x="36" y="92" width="88" height="74" rx="12" fill="url(#kb)" stroke="#7b2fff" stroke-width="1"/>
+  <rect x="55" y="106" width="50" height="32" rx="6" fill="#08081a" stroke="#00f5ff" stroke-width=".8"/>
+  <line x1="60" y1="116" x2="100" y2="116" stroke="#00f5ff" stroke-width=".7" opacity=".55"/>
+  <line x1="60" y1="122" x2="98" y2="122" stroke="#7b2fff" stroke-width=".7" opacity=".55"/>
+  <line x1="60" y1="128" x2="94" y2="128" stroke="#00f5ff" stroke-width=".7" opacity=".55"/>
+  <circle cx="80" cy="122" r="5" fill="#00f5ff">
+    <animate attributeName="r" values="5;7;5" dur=".9s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values=".9;.2;.9" dur=".9s" repeatCount="indefinite"/>
+  </circle>
+  <rect x="12" y="94" width="22" height="58" rx="10" fill="url(#kb)" stroke="#7b2fff" stroke-width="1"/>
+  <rect x="10" y="149" width="26" height="12" rx="6" fill="#16162e"/>
+  <g>
+    <animateTransform attributeName="transform" type="rotate" values="0 126 96;-38 126 96;0 126 96" dur="2s" repeatCount="indefinite"/>
+    <rect x="122" y="86" width="22" height="55" rx="10" fill="url(#kb)" stroke="#7b2fff" stroke-width="1"/>
+    <rect x="120" y="85" width="26" height="12" rx="6" fill="#16162e"/>
+  </g>
+  <rect x="48" y="164" width="26" height="44" rx="8" fill="url(#kb)" stroke="#7b2fff" stroke-width="1"/>
+  <rect x="86" y="164" width="26" height="44" rx="8" fill="url(#kb)" stroke="#7b2fff" stroke-width="1"/>
+  <rect x="42" y="202" width="34" height="11" rx="5" fill="#16162e"/>
+  <rect x="84" y="202" width="34" height="11" rx="5" fill="#16162e"/>
+</svg>`;
+
+SVG.bella = `<svg viewBox="0 0 160 220" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="dv" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff006e"/><stop offset="100%" stop-color="#c90057"/>
+    </linearGradient>
+    <linearGradient id="sk" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5c5a3"/><stop offset="100%" stop-color="#e8a882"/>
+    </linearGradient>
+  </defs>
+  <text x="12" y="42" font-size="13" fill="#ffbe0b" opacity=".7">✨</text>
+  <text x="122" y="52" font-size="13" fill="#ffbe0b" opacity=".7">✨</text>
+  <ellipse cx="80" cy="46" rx="36" ry="42" fill="#180030"/>
+  <ellipse cx="80" cy="62" rx="30" ry="33" fill="url(#sk)"/>
+  <path d="M50 46 Q38 74 44 96" stroke="#180030" stroke-width="11" fill="none" stroke-linecap="round"/>
+  <path d="M110 46 Q122 74 116 96" stroke="#180030" stroke-width="11" fill="none" stroke-linecap="round"/>
+  <path d="M50 30 L57 18 L65 28 L72 14 L80 26 L88 14 L95 28 L103 18 L110 30" stroke="#ffbe0b" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="80" cy="26" r="4.5" fill="#ffbe0b"><animate attributeName="opacity" values="1;.3;1" dur="1.8s" repeatCount="indefinite"/></circle>
+  <ellipse cx="68" cy="58" rx="7" ry="8" fill="#180030"/>
+  <ellipse cx="92" cy="58" rx="7" ry="8" fill="#180030"/>
+  <circle cx="70" cy="56" r="2.5" fill="#fff"/><circle cx="94" cy="56" r="2.5" fill="#fff"/>
+  <line x1="61" y1="50" x2="58" y2="45" stroke="#180030" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="68" y1="50" x2="67" y2="44" stroke="#180030" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="75" y1="51" x2="76" y2="46" stroke="#180030" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="85" y1="51" x2="84" y2="46" stroke="#180030" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="92" y1="50" x2="93" y2="44" stroke="#180030" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="99" y1="50" x2="102" y2="45" stroke="#180030" stroke-width="1.8" stroke-linecap="round"/>
+  <rect x="61" y="55" width="14" height="9" rx="5" fill="url(#sk)" opacity="0">
+    <animate attributeName="opacity" values="0;0;0;0;0;0;0;1;0;0" dur="6s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="85" y="55" width="14" height="9" rx="5" fill="url(#sk)" opacity="0">
+    <animate attributeName="opacity" values="0;0;0;0;0;0;0;1;0;0" dur="6s" repeatCount="indefinite"/>
+  </rect>
+  <ellipse cx="56" cy="72" rx="11" ry="6" fill="#ff006e" opacity=".22"/>
+  <ellipse cx="104" cy="72" rx="11" ry="6" fill="#ff006e" opacity=".22"/>
+  <path d="M70 82 Q80 92 90 82" stroke="#ff006e" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M70 82 Q80 77 90 82" fill="#ff006e" stroke="none" opacity=".7"/>
+  <rect x="73" y="93" width="14" height="14" rx="3" fill="url(#sk)"/>
+  <path d="M38 108 Q50 96 72 100 L80 108 L88 100 Q110 96 122 108 L120 168 Q80 180 40 168 Z" fill="url(#dv)"/>
+  <path d="M40 110 Q28 134 32 160" stroke="#f5c5a3" stroke-width="15" fill="none" stroke-linecap="round"/>
+  <line x1="32" y1="160" x2="22" y2="183" stroke="#8b5e3c" stroke-width="5" stroke-linecap="round"/>
+  <ellipse cx="19" cy="188" rx="7" ry="3.5" fill="#ff006e" transform="rotate(-25 19 188)"/>
+  <g>
+    <animateTransform attributeName="transform" type="rotate" values="0 120 112;-32 120 112;0 120 112" dur="2s" repeatCount="indefinite"/>
+    <path d="M120 112 Q132 90 128 70" stroke="#f5c5a3" stroke-width="15" fill="none" stroke-linecap="round"/>
+    <ellipse cx="128" cy="68" rx="11" ry="13" fill="url(#sk)"/>
+  </g>
+  <rect x="57" y="166" width="24" height="44" rx="8" fill="#c90057"/>
+  <rect x="81" y="166" width="24" height="44" rx="8" fill="#c90057"/>
+  <ellipse cx="68" cy="210" rx="15" ry="6" fill="#ffbe0b"/>
+  <ellipse cx="92" cy="210" rx="15" ry="6" fill="#ffbe0b"/>
+</svg>`;
+
+SVG.turbo = `<svg viewBox="0 0 160 220" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="tb" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f77f00"/><stop offset="100%" stop-color="#d06500"/>
+    </linearGradient>
+    <linearGradient id="st" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c68642"/><stop offset="100%" stop-color="#a0693a"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="80" cy="60" rx="32" ry="34" fill="url(#st)"/>
+  <path d="M44 50 Q44 18 80 18 Q116 18 116 50 Z" fill="#fcbf49"/>
+  <rect x="38" y="47" width="84" height="10" rx="4" fill="#f77f00"/>
+  <rect x="36" y="48" width="88" height="6" rx="3" fill="#d06500"/>
+  <path d="M52 22 Q72 18 90 20" stroke="rgba(255,255,255,.25)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <ellipse cx="68" cy="60" rx="7" ry="7" fill="#1a0800"/>
+  <ellipse cx="92" cy="60" rx="7" ry="7" fill="#1a0800"/>
+  <circle cx="70" cy="58" r="2.5" fill="#fff"/><circle cx="94" cy="58" r="2.5" fill="#fff"/>
+  <path d="M60 51 Q68 47 76 50" stroke="#1a0800" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M84 50 Q92 47 100 51" stroke="#1a0800" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <ellipse cx="80" cy="78" rx="22" ry="10" fill="#7a5230" opacity=".3"/>
+  <path d="M66 76 Q80 90 94 76" stroke="#1a0800" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <rect x="72" y="92" width="16" height="13" rx="3" fill="url(#st)"/>
+  <path d="M32 106 Q46 94 70 98 L80 108 L90 98 Q114 94 128 106 L126 172 Q80 184 34 172 Z" fill="#2d2d2d"/>
+  <rect x="77" y="104" width="6" height="52" rx="3" fill="#3a3a3a"/>
+  <rect x="44" y="122" width="22" height="16" rx="3" fill="#252525" stroke="#f77f00" stroke-width="1"/>
+  <rect x="94" y="122" width="22" height="16" rx="3" fill="#252525" stroke="#f77f00" stroke-width="1"/>
+  <rect x="32" y="155" width="96" height="7" rx="2" fill="#f77f00" opacity=".65"/>
+  <path d="M34 108 Q20 134 24 162" stroke="#2d2d2d" stroke-width="20" fill="none" stroke-linecap="round"/>
+  <rect x="15" y="155" width="9" height="30" rx="3" fill="#999" transform="rotate(-15 15 155)"/>
+  <ellipse cx="11" cy="155" rx="9" ry="6" fill="#999" transform="rotate(-15 11 155)"/>
+  <ellipse cx="27" cy="183" rx="9" ry="6" fill="#999" transform="rotate(-15 27 183)"/>
+  <g>
+    <animateTransform attributeName="transform" type="rotate" values="0 124 108;-36 124 108;0 124 108" dur="2s" repeatCount="indefinite"/>
+    <path d="M124 108 Q140 86 134 64" stroke="#2d2d2d" stroke-width="20" fill="none" stroke-linecap="round"/>
+    <path d="M124 108 Q140 86 134 64" stroke="#383838" stroke-width="14" fill="none" stroke-linecap="round"/>
+    <ellipse cx="134" cy="62" rx="13" ry="15" fill="url(#st)"/>
+  </g>
+  <rect x="50" y="170" width="26" height="42" rx="8" fill="#1a1a1a"/>
+  <rect x="84" y="170" width="26" height="42" rx="8" fill="#1a1a1a"/>
+  <rect x="44" y="206" width="36" height="12" rx="5" fill="#f77f00"/>
+  <rect x="80" y="206" width="36" height="12" rx="5" fill="#f77f00"/>
+</svg>`;
+
+/* ══════════════════════════════════════════════
+   BUILD GRID
+══════════════════════════════════════════════ */
+function acStr(ac){ return `${ac[0]},${ac[1]},${ac[2]}`; }
+function acHex(ac){ return `rgb(${ac[0]},${ac[1]},${ac[2]})`; }
+
+function buildSpot(s) {
+  const el = document.createElement('div');
+  el.className = `spot s-${s.tier}${s.ghost?' spot-ghost':''}`;
+  el.id = `spot-${s.id}`;
+  el.style.background = s.bg;
+  el.style.setProperty('--acr', s.ac[0]);
+  el.style.setProperty('--acg', s.ac[1]);
+  el.style.setProperty('--acb', s.ac[2]);
+  el.onclick = () => openBS(s.id);
+
+  // stars
+  const stars = document.createElement('div');
+  stars.className = 'spot-stars';
+  el.appendChild(stars);
+
+  // tier badge (not for micro)
+  if (s.tier !== 'micro') {
+    const tb = document.createElement('div');
+    tb.className = 'tier-badge';
+    tb.style.color = TIER_COLORS[s.tier];
+    tb.style.background = `rgba(${acStr(s.ac)},.1)`;
+    tb.style.borderColor = `rgba(${acStr(s.ac)},.25)`;
+    tb.textContent = TIER_LABELS[s.tier];
+    el.appendChild(tb);
+  }
+
+  // crown (for king mechanic)
+  if (!s.ghost) {
+    const crown = document.createElement('div');
+    crown.className = 'king-crown';
+    crown.textContent = '👑';
+    el.appendChild(crown);
+  }
+
+  // notif bubble
+  if (!s.ghost && s.notif) {
+    const nb = document.createElement('div');
+    nb.className = 'notif-bub';
+    nb.id = `nb-${s.id}`;
+    nb.textContent = s.notif;
+    el.appendChild(nb);
+  }
+
+  // avatar stage
+  const stage = document.createElement('div');
+  stage.className = 'stage';
+  if (!s.ghost && s.tier !== 'micro') {
+    const r1 = document.createElement('div');
+    r1.className = 'ring rg1';
+    r1.style.borderColor = acHex(s.ac);
+    const r2 = document.createElement('div');
+    r2.className = 'ring rg2';
+    r2.style.borderColor = acHex(s.ac);
+    stage.appendChild(r1);
+    stage.appendChild(r2);
+  }
+
+  if (!s.ghost) {
+    const svgWrap = document.createElement('div');
+    svgWrap.innerHTML = SVG[s.avatar] || '';
+    const svgEl = svgWrap.firstElementChild;
+    if (svgEl) {
+      svgEl.classList.add('av');
+      svgEl.style.setProperty('--fd', s.float);
+      svgEl.style.setProperty('--fdy', s.floatDel);
+      svgEl.style.filter = `drop-shadow(0 6px 20px rgba(${acStr(s.ac)},.25))`;
+      stage.appendChild(svgEl);
+    }
+  } else {
+    // ghost avatar
+    const ghost = document.createElement('div');
+    ghost.className = 'ghost-av';
+    ghost.style.setProperty('--fd', s.float);
+    ghost.style.setProperty('--fdy', s.floatDel);
+    const gb = document.createElement('div');
+    gb.className = 'gb';
+    gb.style.setProperty('--acr', s.ac[0]);
+    gb.style.setProperty('--acg', s.ac[1]);
+    gb.style.setProperty('--acb', s.ac[2]);
+    gb.textContent = '?';
+    ghost.appendChild(gb);
+    if (s.tier !== 'micro') {
+      const gt = document.createElement('div');
+      gt.className = 'gt';
+      gt.innerHTML = '<span></span><span></span><span></span>';
+      gt.querySelectorAll('span').forEach(sp => {
+        sp.style.borderColor = `rgba(${acStr(s.ac)},.3)`;
+        sp.style.background = `rgba(${acStr(s.ac)},.04)`;
+      });
+      ghost.appendChild(gt);
+    }
+    stage.appendChild(ghost);
+  }
+  el.appendChild(stage);
+
+  // info (not micro)
+  if (s.tier !== 'micro') {
+    const info = document.createElement('div');
+    info.className = 'spot-info';
+    if (!s.ghost) {
+      const nm = document.createElement('div');
+      nm.className = 'sp-name';
+      nm.style.color = acHex(s.ac);
+      nm.textContent = s.name;
+      const badge = document.createElement('div');
+      badge.className = 'sp-badge';
+      badge.style.background = `rgba(${acStr(s.ac)},.12)`;
+      badge.style.color = acHex(s.ac);
+      badge.style.borderColor = `rgba(${acStr(s.ac)},.25)`;
+      badge.style.border = '1px solid';
+      badge.textContent = s.badge;
+      info.appendChild(nm);
+      info.appendChild(badge);
+    } else {
+      const lbl = document.createElement('div');
+      lbl.className = 'ghost-label';
+      lbl.style.setProperty('--acr', s.ac[0]);
+      lbl.style.setProperty('--acg', s.ac[1]);
+      lbl.style.setProperty('--acb', s.ac[2]);
+      lbl.textContent = '¿TU MARCA?';
+      info.appendChild(lbl);
+    }
+    el.appendChild(info);
+  } else {
+    // micro ghost label
+    const lbl = document.createElement('div');
+    lbl.className = 'ghost-label';
+    lbl.style.setProperty('--acr', s.ac[0]);
+    lbl.style.setProperty('--acg', s.ac[1]);
+    lbl.style.setProperty('--acb', s.ac[2]);
+    lbl.style.fontSize = '.34rem';
+    lbl.style.marginBottom = '.15rem';
+    lbl.style.position = 'relative';
+    lbl.style.zIndex = '10';
+    lbl.textContent = '+SPOT';
+    el.appendChild(lbl);
+  }
+
+  // score bar (active spots only)
+  if (!s.ghost) {
+    const sbw = document.createElement('div');
+    sbw.className = 'score-bar-wrap';
+    const sbf = document.createElement('div');
+    sbf.className = 'score-bar-fill';
+    sbf.id = `sb-${s.id}`;
+    sbf.style.background = `linear-gradient(90deg,${acHex(s.ac2)},${acHex(s.ac)})`;
+    sbw.appendChild(sbf);
+    el.appendChild(sbw);
+
+    const sc = document.createElement('div');
+    sc.className = 'score-count';
+    sc.id = `sc-${s.id}`;
+    sc.style.transition = 'transform .2s ease, color .2s ease';
+    sc.textContent = (SCORES[s.id]||0) + ' ♥';
+    el.appendChild(sc);
+  }
+
+  // add stars
+  const cols = [acHex(s.ac), acHex(s.ac2||s.ac), '#fff'];
+  for (let i=0; i<(s.tier==='micro'?5:12); i++) {
+    const st = document.createElement('div');
+    st.className = 'star';
+    const sz = .5 + Math.random()*1.3;
+    st.style.cssText = `
+      left:${Math.random()*100}%;top:${Math.random()*100}%;
+      width:${sz}px;height:${sz}px;
+      background:${cols[Math.floor(Math.random()*3)]};
+      --d:${2+Math.random()*4}s;--dl:${-Math.random()*5}s;--o:${.1+Math.random()*.3};
+    `;
+    stars.appendChild(st);
+  }
+
+  return el;
+}
+
+const vitrina = document.getElementById('vitrina');
+SPOTS.forEach(s => vitrina.appendChild(buildSpot(s)));
+
+// initial UI
+updateAllUI();
+
+/* ══════════════════════════════════════════════
+   BOTTOM SHEET
+══════════════════════════════════════════════ */
+let currentSpotId = null;
+
+function openBS(spotId) {
+  currentSpotId = spotId;
+  const s = SPOTS.find(x=>x.id===spotId);
+  if (!s) return;
+
+  // always count as a tap on open
+  if (!s.ghost) addTap(spotId, true);
+
+  const inner = document.getElementById('bs-inner');
+  inner.innerHTML = '';
+
+  const ac = s.ac;
+  const acColor = acHex(ac);
+  const ac2Color = s.ac2 ? acHex(s.ac2) : acColor;
+
+  if (!s.ghost) {
+    // ── ACTIVE SPOT SHEET ──
+    const score = SCORES[spotId] || 0;
+    const max = getMaxScore();
+    const pct = Math.min(100, (score / max) * 100);
+    const kingId = getKingId();
+    const isKing = spotId === kingId;
+    const rank = SPOTS.filter(x=>!x.ghost).sort((a,b)=>(SCORES[b.id]||0)-(SCORES[a.id]||0)).findIndex(x=>x.id===spotId)+1;
+    const rankLabel = ['🥇 Líder','🥈 2do','🥉 3ro'][rank-1] || `${rank}to`;
+
+    inner.innerHTML = `
+      <div class="bs-tier-badge" style="background:rgba(${acStr(ac)},.12);color:${acColor};border:1px solid rgba(${acStr(ac)},.25)">
+        ${isKing?'👑 ':''} ${TIER_LABELS[s.tier]}
+      </div>
+      <div class="bs-av-wrap">
+        <div class="bs-av-ring br1" style="border-color:${acColor}"></div>
+        <div class="bs-av-ring br2" style="border-color:${acColor}"></div>
+        <div class="bs-av-svg">${SVG[s.avatar]||''}</div>
+      </div>
+      <div class="bs-name" style="color:${acColor}">${s.name}</div>
+      <div class="bs-sub">${s.sub}</div>
+      <div class="bs-score-wrap" style="border-color:rgba(${acStr(ac)},.15)">
+        <div class="bs-score-row">
+          <span class="bs-score-label">Apoyo de la comunidad</span>
+          <span class="bs-score-val" id="bs-score-val">${score}</span>
+          <span class="bs-rank" style="background:rgba(${acStr(ac)},.15);color:${acColor}">${rankLabel}</span>
+        </div>
+        <div class="bs-score-track">
+          <div class="bs-score-prog" id="bs-score-prog" style="width:${pct}%;background:linear-gradient(90deg,${ac2Color},${acColor})"></div>
+        </div>
+      </div>
+      <div class="bs-offer-box" style="border-color:rgba(${acStr(ac)},.15)">
+        <div class="bs-offer-title">${s.badge} ${s.offer}</div>
+        <div class="bs-offer-val" style="color:${acColor}">${s.offerVal}</div>
+        <div class="bs-offer-desc">${s.offerDesc}</div>
+      </div>
+      <button class="bs-tap-btn" id="bs-tap-btn"
+        style="background:linear-gradient(135deg,${ac2Color},${acColor});color:#000;"
+        onclick="bsTap()">
+        <span style="font-size:1.1rem">⚡</span>
+        <span>APOYAR A ${s.name.split(' ')[0]}</span>
+        <span class="bs-tap-count" id="bs-tap-c">${score}</span>
+      </button>
+      <button class="bs-nav-btn" onclick="window.open('${s.ctaUrl}','_blank');boop(660)">
+        ${s.ctaTxt}
+      </button>
+    `;
+  } else {
+    // ── GHOST SPOT SHEET ──
+    const tierColor = TIER_COLORS[s.tier];
+    inner.innerHTML = `
+      <div class="bs-tier-badge" style="background:rgba(${acStr(ac)},.1);color:${acColor};border:1px dashed rgba(${acStr(ac)},.3)">
+        SPOT DISPONIBLE
+      </div>
+      <div class="bs-av-wrap">
+        <div class="bs-av-ring br1" style="border-color:${acColor}"></div>
+        <div class="bs-av-ring br2" style="border-color:${acColor}"></div>
+        <div class="bs-ghost" style="border-color:rgba(${acStr(ac)},.4)">?</div>
+      </div>
+      <div class="bs-ghost-pitch">
+        <div class="bs-ghost-title">¿Estás en Colombia y tu negocio aún no está en la vitrina?</div>
+        <div class="bs-ghost-desc">
+          Tu avatar animado, tu oferta y tu comunidad — todo en un QR que pones en tu local.
+          Cada vez que un cliente lo escanea, te apoya con un tap.
+        </div>
+        <span class="bs-ghost-tier" style="background:rgba(${acStr(ac)},.12);color:${acColor};border:1px solid rgba(${acStr(ac)},.25)">
+          ${TIER_LABELS[s.tier]}
+        </span>
+        <div class="bs-ghost-perks">
+          <div class="bs-ghost-perk">✅ Avatar de marca animado hecho a medida</div>
+          <div class="bs-ghost-perk">✅ Promoción siempre activa en la vitrina</div>
+          <div class="bs-ghost-perk">✅ Contador de apoyo de tu comunidad</div>
+          <div class="bs-ghost-perk">✅ QR listo para imprimir en tu local</div>
+          <div class="bs-ghost-perk">🗺️ ${TIER_DESC[s.tier]}</div>
+        </div>
+      </div>
+      <button class="bs-tap-btn"
+        style="background:linear-gradient(135deg,${acColor},${acColor}bb);color:#000;"
+        onclick="window.open('https://www.youtube.com/@kronosoperator','_blank');boop(660,660)">
+        <span>📡</span>
+        <span>RESERVAR ESTE SPOT</span>
+      </button>
+    `;
+  }
+
+  document.getElementById('bsheet').classList.add('open');
+  document.getElementById('bs-overlay').classList.add('show');
+  boop(440, 'sine', .15);
+}
+
+function closeBS() {
+  document.getElementById('bsheet').classList.remove('open');
+  document.getElementById('bs-overlay').classList.remove('show');
+  currentSpotId = null;
+}
+
+function bsTap() {
+  if (!currentSpotId) return;
+  addTap(currentSpotId);
+  const score = SCORES[currentSpotId] || 0;
+  const max = getMaxScore();
+  const sv = document.getElementById('bs-score-val');
+  const sp = document.getElementById('bs-score-prog');
+  const tc = document.getElementById('bs-tap-c');
+  if (sv) { sv.textContent = score; sv.style.transform='scale(1.4)'; setTimeout(()=>sv.style.transform='',200); }
+  if (sp) sp.style.width = `${Math.min(100,(score/max)*100)}%`;
+  if (tc) { tc.textContent = score; tc.style.transform='scale(1.4)'; setTimeout(()=>tc.style.transform='',200); }
+  const s = SPOTS.find(x=>x.id===currentSpotId);
+  const ac = s.ac;
+  burst(window.innerWidth/2, window.innerHeight*.55, [acHex(ac),'⚡','❤️','★','✦'], 12);
+  boop(660, 'sine', .2);
+  boop(880, 'sine', .15);
+  // update ticker
+  pushTicker(`⚡ +1 para ${s.name.split(' ')[0]} · ${score} taps`);
+}
+
+function stripCta() {
+  openBS(SPOTS.find(s=>s.ghost)?.id || 's4');
+}
+
+/* ══════════════════════════════════════════════
+   WEB AUDIO
+══════════════════════════════════════════════ */
+let audioCtx = null;
+function boop(freq=440, freq2=0, dur=.18) {
+  try {
+    if (!audioCtx) audioCtx = new (window.AudioContext||window.webkitAudioContext)();
+    [freq, freq2].filter(Boolean).forEach((f, i) => {
+      const o = audioCtx.createOscillator();
+      const g = audioCtx.createGain();
+      o.connect(g); g.connect(audioCtx.destination);
+      o.type = 'sine'; o.frequency.value = f;
+      const t = audioCtx.currentTime + i*.06;
+      g.gain.setValueAtTime(.07, t);
+      g.gain.exponentialRampToValueAtTime(.001, t+dur);
+      o.start(t); o.stop(t+dur);
+    });
+  } catch(e) {}
+}
+
+/* ══════════════════════════════════════════════
+   SPARKLE BURST
+══════════════════════════════════════════════ */
+function burst(cx, cy, set, count=8) {
+  for (let n=0; n<count; n++) {
+    const sp = document.createElement('div');
+    sp.className = 'spark';
+    const angle = (n/count)*Math.PI*2 + Math.random()*.4;
+    const dist = 40+Math.random()*60;
+    const item = set[Math.floor(Math.random()*set.length)];
+    const isEmoji = item.length > 2 || isNaN(item.charCodeAt(0)) || item.charCodeAt(0)>127;
+    sp.textContent = isEmoji ? item : '';
+    if (!isEmoji) { sp.style.background=item; sp.style.borderRadius='50%'; sp.style.width=sp.style.height=`${4+Math.random()*4}px`; }
+    sp.style.cssText += `
+      left:${cx}px;top:${cy}px;font-size:${.8+Math.random()*.7}rem;
+      --dx:${Math.cos(angle)*dist}px;--dy:${Math.sin(angle)*dist-30}px;
+      --dur:${.55+Math.random()*.3}s;animation-delay:${Math.random()*.1}s;
+    `;
+    document.body.appendChild(sp);
+    sp.addEventListener('animationend', ()=>sp.remove());
+  }
+}
+
+/* ripple keyframe */
 const rs = document.createElement('style');
-rs.textContent = '@keyframes rout{to{transform:scale(2.8);opacity:0}}';
+rs.textContent='@keyframes rout{to{transform:scale(2.8);opacity:0}}';
 document.head.appendChild(rs);
 
-function ctaClick(btn, url) {
-  const r = document.createElement('span');
-  r.style.cssText = 'position:absolute;border-radius:50%;background:rgba(255,255,255,.22);transform:scale(0);animation:rout .55s ease forwards;pointer-events:none;width:200px;height:200px;left:50%;top:50%;margin-left:-100px;margin-top:-100px;';
-  btn.appendChild(r);
-  boop(660, 'sine', .2);
-  setTimeout(() => r.remove(), 560);
-  if (url && url.startsWith('http')) setTimeout(() => window.open(url,'_blank'), 240);
+/* ══════════════════════════════════════════════
+   TICKER
+══════════════════════════════════════════════ */
+function pushTicker(msg) {
+  const ti = document.getElementById('tickerInner');
+  if (!ti) return;
+  const sp = document.createElement('span');
+  sp.className = 'ticker-item hot';
+  sp.textContent = `🔥 ${msg}`;
+  ti.insertBefore(sp, ti.firstChild);
+  setTimeout(()=>sp.remove(), 35000);
 }
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━
-   SLOT CLICK
-━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-function slotClick() {
-  const r = avS.getBoundingClientRect();
-  burst(r.left+r.width/2, r.top+r.height/2, ['?','✨','💡','⭐','→'], 12);
-  boop(880,'sine',.15);
-  boop(1046,'sine',.15);
-  setTimeout(() => window.open('https://kronolog.ai','_blank'), 300);
-}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━
+/* ══════════════════════════════════════════════
    AUTONOMOUS ANIMATIONS
-━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-const autoTargets = [
-  { el: avK, set: 0, svgSel: '.av-f', freqs: [523,659] },
-  { el: avD, set: 1, svgSel: '.av-m', freqs: [659] },
-  { el: avT, set: 2, svgSel: '.av-m', freqs: [440] },
-];
-
-const notifD = document.getElementById('nd');
-const notifT = document.getElementById('nt');
+══════════════════════════════════════════════ */
+const autoTargets = SPOTS.filter(s=>!s.ghost);
+const notifIds = SPOTS.filter(s=>!s.ghost && s.notif).map(s=>s.id);
 
 function autoTick() {
-  const t = autoTargets[Math.floor(Math.random() * autoTargets.length)];
-  const svg = t.el.querySelector(t.svgSel);
-  if (svg) {
-    bounceAv(svg, 1.12, 5);
-    const r = t.el.getBoundingClientRect();
-    burst(r.left + r.width/2, r.top + r.height/2, SETS[t.set], 5);
-    boop(t.freqs[0], 'sine', .12);
+  const t = autoTargets[Math.floor(Math.random()*autoTargets.length)];
+  const el = document.getElementById(`spot-${t.id}`);
+  if (el) {
+    const svg = el.querySelector('.av');
+    if (svg) {
+      svg.style.transition='transform .12s ease';
+      svg.style.transform='scale(1.1) rotate(5deg) translateY(-6px)';
+      setTimeout(()=>{ svg.style.transform='scale(.97)'; setTimeout(()=>svg.style.transform='',120); },140);
+    }
+    const r = el.getBoundingClientRect();
+    burst(r.left+r.width/2, r.top+r.height/2, ['⚡','★',acHex(t.ac),'✦'], 5);
+    boop(t.ac[0] > 200 ? 523 : 659, 0, .12);
   }
-  // toggle notifs randomly
-  notifD.classList.toggle('show', Math.random() > .4);
-  notifT.classList.toggle('show', Math.random() > .5);
-  // schedule next
-  setTimeout(autoTick, 1800 + Math.random() * 2400);
+  // toggle notifs
+  notifIds.forEach(id=>{
+    const nb=document.getElementById(`nb-${id}`);
+    if(nb) nb.classList.toggle('show', Math.random()>.4);
+  });
+  setTimeout(autoTick, 1600+Math.random()*2200);
 }
+
+/* ══════════════════════════════════════════════
+   INTRO + INIT
+══════════════════════════════════════════════ */
+const intro = document.getElementById('intro');
+const dismiss = ()=>intro.classList.add('out');
+setTimeout(dismiss, 3500);
+intro.addEventListener('click', dismiss);
+
 // start autonomous after intro
-setTimeout(autoTick, 3500);
+setTimeout(() => {
+  autoTick();
+  fetchFirebase(); // try to load cross-device scores
+}, 4000);
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━
-   RANDOM GHOST WIGGLE
-━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-function ghostWiggle() {
-  const g = document.querySelector('.ghost-body');
-  if (g) {
-    g.style.transition = 'transform .1s ease';
-    g.style.transform = 'rotate(10deg) scale(1.1)';
-    setTimeout(() => { g.style.transform = 'rotate(-8deg)'; }, 120);
-    setTimeout(() => { g.style.transform = ''; }, 250);
-  }
-  setTimeout(ghostWiggle, 3000 + Math.random() * 3000);
-}
-setTimeout(ghostWiggle, 5000);
+// Firebase poll every 30s (if configured)
+if (FIREBASE_URL) setInterval(fetchFirebase, 30000);
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━
-   CSS STAR PARTICLES
-━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-const SCOLS = ['#00f5ff','#7b2fff','#ffffff',
-               '#ffbe0b','#ff006e','#ffffff',
-               '#fcbf49','#f77f00','#ffffff'];
-document.querySelectorAll('.stars').forEach((c, pi) => {
-  for (let i = 0; i < 30; i++) {
-    const s = document.createElement('div');
-    s.className = 'star';
-    const col = SCOLS[pi*3 + Math.floor(Math.random()*3)] || '#fff';
-    const sz = .6 + Math.random() * 1.6;
-    s.style.cssText = `
-      left:${Math.random()*100}%;top:${Math.random()*100}%;
-      width:${sz}px;height:${sz}px;background:${col};
-      --d:${2+Math.random()*4}s;--dl:${-Math.random()*5}s;--o:${.1+Math.random()*.35};
-    `;
-    c.appendChild(s);
-  }
-});
+// initial score bars
+updateAllUI();
 </script>
 </body>
 </html>
