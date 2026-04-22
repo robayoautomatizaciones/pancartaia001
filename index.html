@@ -5,877 +5,749 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="theme-color" content="#000000">
-  <meta name="description" content="PANCARTA IA — Descuentos y experiencias con avatares IA para tu negocio">
-  <title>PANCARTA IA</title>
+  <meta name="theme-color" content="#000">
+  <title>PANCARTA IA — Robayo Automatizaciones</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   RESET & BASE
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━
+   RESET & ROOT
+━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Space Grotesk',sans-serif}
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━
    INTRO
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 #intro{
   position:fixed;inset:0;background:#000;z-index:1000;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.6rem;
-  transition:opacity .8s ease,visibility .8s ease;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;
+  transition:opacity .8s ease,visibility .8s ease;cursor:pointer;
 }
 #intro.out{opacity:0;visibility:hidden;pointer-events:none}
-
-.i-icon{font-size:3.8rem;animation:popIn .6s cubic-bezier(.34,1.56,.64,1) both}
+.i-icon{font-size:3.5rem;animation:popIn .6s cubic-bezier(.34,1.56,.64,1) both}
 @keyframes popIn{from{transform:scale(0)rotate(-180deg);opacity:0}to{transform:scale(1)rotate(0);opacity:1}}
-
-.i-title{
-  font-family:'Orbitron',sans-serif;font-size:2.3rem;font-weight:900;
-  color:#fff;letter-spacing:.07em;text-align:center;
-  animation:glitchIn .55s .35s ease both;
-}
-@keyframes glitchIn{
+.i-t1{font-family:'Orbitron',sans-serif;font-size:1.9rem;font-weight:900;color:#fff;letter-spacing:.07em;text-align:center;animation:glIn .5s .35s ease both}
+@keyframes glIn{
   0%{opacity:0;transform:skewX(14deg);color:#00f5ff}
   35%{opacity:1;transform:skewX(-4deg);color:#ff006e}
   65%{transform:skewX(2deg);color:#7b2fff}
   100%{opacity:1;transform:skewX(0);color:#fff}
 }
+.i-t2{font-family:'Orbitron',sans-serif;font-size:.65rem;color:rgba(255,255,255,.35);letter-spacing:.22em;animation:fu .4s .9s ease both}
+@keyframes fu{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.i-bar{width:160px;height:2px;background:rgba(255,255,255,.1);border-radius:2px;margin-top:1.8rem;overflow:hidden;animation:fu .3s 1.1s ease both}
+.i-fill{height:100%;width:0;background:linear-gradient(90deg,#7b2fff,#00f5ff,#ff006e,#fcbf49);animation:bf 1.8s 1.1s ease forwards}
+@keyframes bf{to{width:100%}}
+.i-hint{font-size:.58rem;color:rgba(255,255,255,.2);letter-spacing:.15em;margin-top:1.2rem;animation:fu .3s 2.6s ease both}
 
-.i-sub{
-  font-size:.72rem;color:rgba(255,255,255,.35);letter-spacing:.22em;text-transform:uppercase;
-  animation:fadeUp .4s .9s ease both;
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━
+   APP SHELL
+━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+#app{width:100%;height:100dvh;display:flex;flex-direction:column;overflow:hidden}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━
+   TOPBAR
+━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+#topbar{
+  height:46px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 1rem;background:rgba(0,0,0,.8);border-bottom:1px solid rgba(255,255,255,.07);
+  position:relative;z-index:50;
 }
-@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.tb-brand{font-family:'Orbitron',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.12em;
+  background:linear-gradient(90deg,#7b2fff,#00f5ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.tb-right{display:flex;align-items:center;gap:.5rem}
+.tb-tag{font-size:.55rem;color:rgba(255,255,255,.25);letter-spacing:.14em}
+.tb-dot{width:6px;height:6px;border-radius:50%;background:#00f5ff;animation:dotPulse 2s ease-in-out infinite}
+@keyframes dotPulse{0%,100%{opacity:1;box-shadow:0 0 4px #00f5ff}50%{opacity:.4;box-shadow:none}}
 
-.i-bar{
-  width:180px;height:2px;background:rgba(255,255,255,.1);border-radius:2px;
-  margin-top:2rem;overflow:hidden;animation:fadeUp .3s 1.1s ease both;
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━
+   FEATURED SPOT (PREMIUM)
+━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+#featured{
+  flex:2;min-height:0;position:relative;overflow:hidden;
+  background:#06060f;display:flex;flex-direction:column;align-items:center;
 }
-.i-fill{
-  height:100%;width:0;border-radius:2px;
-  background:linear-gradient(90deg,#7b2fff,#00f5ff,#ff006e,#fcbf49);
-  animation:barFill 1.8s 1.1s ease forwards;
+
+/* ambient bg */
+#featured::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 90% 60% at 50% 0%,#7b2fff25,transparent),
+             radial-gradient(ellipse 60% 50% at 90% 100%,#00f5ff15,transparent);
 }
-@keyframes barFill{to{width:100%}}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   APP SHELL — SCROLL SNAP
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-#app{
-  width:100%;height:100dvh;
-  overflow-y:scroll;scroll-snap-type:y mandatory;scroll-behavior:smooth;
-  -webkit-overflow-scrolling:touch;
-}
-#app::-webkit-scrollbar{display:none}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   PANELS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.panel{
-  width:100%;height:100dvh;scroll-snap-align:start;scroll-snap-stop:always;
-  position:relative;overflow:hidden;
-  display:flex;flex-direction:column;align-items:center;
-  padding:0 1.4rem 1.2rem;
-}
-.pk{background:#06060f}
-.pd{background:#110008}
-.pt{background:#0e0700}
-.pf{background:#0c0014}
-
-/* ambient glow */
-.panel::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:0}
-.pk::before{background:radial-gradient(ellipse 80% 55% at 50% -5%,#7b2fff28,transparent),radial-gradient(ellipse 55% 45% at 88% 92%,#00f5ff18,transparent)}
-.pd::before{background:radial-gradient(ellipse 80% 55% at 50% -5%,#ff006e28,transparent),radial-gradient(ellipse 55% 45% at 12% 92%,#ffbe0b18,transparent)}
-.pt::before{background:radial-gradient(ellipse 80% 55% at 50% -5%,#f77f0028,transparent),radial-gradient(ellipse 55% 45% at 88% 92%,#fcbf4918,transparent)}
-.pf::before{background:radial-gradient(ellipse 80% 55% at 50% -5%,#f7258528,transparent),radial-gradient(ellipse 55% 45% at 12% 92%,#3a0ca328,transparent)}
-
-/* CRT scanlines */
-.panel::after{
-  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+/* scanlines */
+#featured::after{
+  content:'';position:absolute;inset:0;pointer-events:none;
   background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,.04) 3px,rgba(0,0,0,.04) 4px);
 }
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   PANEL HEADER
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.phdr{
-  width:100%;display:flex;justify-content:space-between;align-items:center;
-  padding:1rem 0 .4rem;position:relative;z-index:10;
+.tier-badge{
+  position:absolute;top:.6rem;left:.7rem;z-index:20;
+  font-family:'Orbitron',sans-serif;font-size:.55rem;font-weight:700;letter-spacing:.1em;
+  color:#ffbe0b;background:rgba(255,190,11,.12);border:1px solid rgba(255,190,11,.28);
+  border-radius:20px;padding:.18rem .6rem;
+  animation:badgePop 3s ease-in-out infinite;
 }
-.phdr-tag{font-family:'Orbitron',sans-serif;font-size:.58rem;letter-spacing:.15em;color:rgba(255,255,255,.28)}
-.phdr-num{font-family:'Orbitron',sans-serif;font-size:.58rem;color:rgba(255,255,255,.22)}
+@keyframes badgePop{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   AVATAR STAGE
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.stage{
-  flex:1;position:relative;display:flex;align-items:center;justify-content:center;
-  width:100%;max-height:240px;z-index:10;cursor:pointer;user-select:none;
+/* stars layer */
+.stars{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.star{position:absolute;border-radius:50%;animation:twinkle var(--d) var(--dl) ease-in-out infinite}
+@keyframes twinkle{0%,100%{opacity:0}50%{opacity:var(--o)}}
+
+/* avatar stage - featured */
+.stage-f{
+  flex:1;min-height:0;width:100%;position:relative;
+  display:flex;align-items:center;justify-content:center;z-index:10;cursor:pointer;
 }
-
-.ring{position:absolute;border-radius:50%;border:1px solid;animation:ringPulse 3.5s ease-in-out infinite}
+.ring{position:absolute;border-radius:50%;border:1px solid;animation:rp 3.5s ease-in-out infinite}
 .r1{width:160px;height:160px;opacity:.22}
 .r2{width:200px;height:200px;opacity:.13;animation-delay:.6s}
 .r3{width:245px;height:245px;opacity:.07;animation-delay:1.2s}
-@keyframes ringPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+@keyframes rp{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+.pk .ring,.stage-f.pk .ring{border-color:#00f5ff}
 
-.pk .ring{border-color:#00f5ff}
-.pd .ring{border-color:#ffbe0b}
-.pt .ring{border-color:#fcbf49}
-.pf .ring{border-color:#f72585}
-
-.av{
-  height:195px;width:auto;position:relative;z-index:11;
-  animation:float 3.5s ease-in-out infinite;
-  transform-origin:50% 85%;
+.av-f{
+  height:155px;width:auto;position:relative;z-index:11;
+  animation:fl 3.5s ease-in-out infinite;
+  filter:drop-shadow(0 10px 28px rgba(0,0,0,.6));
   transition:transform .15s ease;
-  filter:drop-shadow(0 12px 24px rgba(0,0,0,.6));
 }
-.av:active{transform:scale(.93)rotate(-4deg)!important}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-11px)}}
+.av-f:active{transform:scale(.92)rotate(-5deg)!important}
+@keyframes fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   BRAND BLOCK
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.brand{text-align:center;margin-bottom:.7rem;z-index:10;position:relative}
-.brand-nm{
-  font-family:'Orbitron',sans-serif;font-size:1.28rem;font-weight:900;
-  letter-spacing:.06em;line-height:1.15;
+/* info strip inside featured */
+.feat-info{
+  width:100%;flex-shrink:0;padding:.6rem .9rem .7rem;z-index:10;
+  display:flex;align-items:center;gap:.8rem;
+  background:linear-gradient(0deg,rgba(0,0,0,.6),transparent);
 }
-.pk .brand-nm{color:#00f5ff;text-shadow:0 0 24px #00f5ff88}
-.pd .brand-nm{color:#ffbe0b;text-shadow:0 0 24px #ff006e88}
-.pt .brand-nm{color:#fcbf49;text-shadow:0 0 24px #f77f0088}
-.pf .brand-nm{color:#f72585;text-shadow:0 0 24px #f7258588}
-.brand-sub{font-size:.7rem;color:rgba(255,255,255,.32);letter-spacing:.16em;text-transform:uppercase;margin-top:.18rem}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   PROMO CARD
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.card{
-  width:100%;max-width:420px;z-index:10;position:relative;
-  background:rgba(255,255,255,.04);
-  backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);
-  border-radius:18px;padding:1.05rem 1.15rem;
-  border:1px solid rgba(255,255,255,.07);
+.feat-left{flex:1;min-width:0}
+.feat-nm{font-family:'Orbitron',sans-serif;font-size:1rem;font-weight:900;
+  color:#00f5ff;text-shadow:0 0 18px #00f5ff88;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.feat-url{font-size:.65rem;color:rgba(255,255,255,.32);letter-spacing:.14em;text-transform:uppercase}
+.feat-offer{display:inline-flex;align-items:center;gap:.35rem;margin-top:.3rem;
+  font-size:.68rem;font-weight:600;color:rgba(255,255,255,.65)}
+.feat-offer-val{
+  font-family:'Orbitron',sans-serif;font-size:.85rem;font-weight:900;color:#00f5ff;
+  background:rgba(0,245,255,.1);border:1px solid rgba(0,245,255,.22);
+  border-radius:8px;padding:.15rem .45rem;
 }
-.card::before{
-  content:'';position:absolute;inset:0;border-radius:18px;padding:1px;
-  background:linear-gradient(135deg,rgba(255,255,255,.14),rgba(255,255,255,.02),rgba(255,255,255,.09));
-  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
-  -webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;
-}
-
-.badge{
-  display:inline-flex;align-items:center;gap:.28rem;
-  font-size:.63rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;
-  padding:.2rem .65rem;border-radius:20px;margin-bottom:.65rem;
-  animation:badgePop 2.5s ease-in-out infinite;
-}
-@keyframes badgePop{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
-
-.pk .badge{background:rgba(0,245,255,.1);color:#00f5ff;border:1px solid rgba(0,245,255,.22)}
-.pd .badge{background:rgba(255,190,11,.1);color:#ffbe0b;border:1px solid rgba(255,190,11,.22)}
-.pt .badge{background:rgba(252,191,73,.1);color:#fcbf49;border:1px solid rgba(252,191,73,.22)}
-.pf .badge{background:rgba(247,37,133,.1);color:#f72585;border:1px solid rgba(247,37,133,.22)}
-
-.promo-row{display:flex;justify-content:space-between;align-items:flex-end;gap:.5rem;margin-bottom:.7rem}
-.promo-ttl{font-family:'Orbitron',sans-serif;font-size:.9rem;font-weight:700;color:#fff;margin-bottom:.18rem}
-.promo-desc{font-size:.76rem;color:rgba(255,255,255,.42);line-height:1.45}
-.promo-val{
-  font-family:'Orbitron',sans-serif;font-size:1.85rem;font-weight:900;
-  line-height:1;white-space:nowrap;flex-shrink:0;text-align:right;
-}
-.pk .promo-val{color:#00f5ff}
-.pd .promo-val{color:#ffbe0b}
-.pt .promo-val{color:#fcbf49}
-.pf .promo-val{color:#f72585}
-
-.cta{
-  width:100%;padding:.82rem 1rem;border:none;border-radius:12px;
-  font-family:'Orbitron',sans-serif;font-size:.78rem;font-weight:700;letter-spacing:.07em;
+.cta-f{
+  flex-shrink:0;padding:.6rem 1rem;border:none;border-radius:10px;
+  font-family:'Orbitron',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.07em;
   cursor:pointer;position:relative;overflow:hidden;
-  transition:transform .2s,box-shadow .2s;
+  background:linear-gradient(135deg,#7b2fff,#00f5ff);color:#000;
+  box-shadow:0 4px 20px rgba(0,245,255,.3);transition:transform .2s;
 }
-.cta::after{
-  content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.22),transparent);
-  animation:shimmer 2.8s ease-in-out infinite;
-}
-@keyframes shimmer{0%{left:-100%}60%,100%{left:150%}}
-.cta:active{transform:scale(.97)}
+.cta-f::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);
+  animation:sh 2.5s ease-in-out infinite}
+@keyframes sh{0%{left:-100%}60%,100%{left:150%}}
+.cta-f:active{transform:scale(.96)}
 
-.pk .cta{background:linear-gradient(135deg,#7b2fff,#00f5ff);color:#000;box-shadow:0 4px 26px rgba(0,245,255,.32)}
-.pd .cta{background:linear-gradient(135deg,#ff006e,#ffbe0b);color:#000;box-shadow:0 4px 26px rgba(255,0,110,.32)}
-.pt .cta{background:linear-gradient(135deg,#f77f00,#fcbf49);color:#000;box-shadow:0 4px 26px rgba(247,127,0,.32)}
-.pf .cta{background:linear-gradient(135deg,#3a0ca3,#f72585);color:#fff;box-shadow:0 4px 26px rgba(247,37,133,.32)}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   NAV DOTS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-#ndots{
-  position:fixed;right:.95rem;top:50%;transform:translateY(-50%);
-  display:flex;flex-direction:column;gap:.5rem;z-index:200;
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SECONDARY GRID (3 spots)
+━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+#grid{
+  flex:1.4;min-height:0;
+  display:grid;grid-template-columns:1fr 1fr 1fr;
+  border-top:1px solid rgba(255,255,255,.07);
+  position:relative;z-index:10;
 }
-.ndot{
-  width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.18);
-  border:none;cursor:pointer;transition:all .3s ease;padding:0;
-}
-.ndot.on{background:#fff;transform:scale(1.55);box-shadow:0 0 8px rgba(255,255,255,.45)}
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+.mini{
+  position:relative;overflow:hidden;
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
+  cursor:pointer;padding-bottom:.5rem;
+  border-right:1px solid rgba(255,255,255,.06);
+}
+.mini:last-child{border-right:none}
+
+/* mini bg tones */
+.pd-mini{background:#120005}
+.pt-mini{background:#0d0600}
+.slot{background:#080810}
+
+.mini::before{content:'';position:absolute;inset:0;pointer-events:none}
+.pd-mini::before{background:radial-gradient(ellipse 100% 70% at 50% 0%,#ff006e20,transparent)}
+.pt-mini::before{background:radial-gradient(ellipse 100% 70% at 50% 0%,#f77f0020,transparent)}
+.slot::before{background:radial-gradient(ellipse 100% 70% at 50% 0%,rgba(255,255,255,.04),transparent)}
+
+/* mini avatar stage */
+.stage-m{
+  flex:1;min-height:0;width:100%;position:relative;
+  display:flex;align-items:center;justify-content:center;z-index:5;
+}
+.rm{position:absolute;border-radius:50%;border:1px solid;animation:rp 3s ease-in-out infinite}
+.rm1{width:90px;height:90px;opacity:.18}
+.rm2{width:115px;height:115px;opacity:.09;animation-delay:.5s}
+.pd-mini .rm{border-color:#ffbe0b}
+.pt-mini .rm{border-color:#fcbf49}
+.slot .rm{border-color:rgba(255,255,255,.25)}
+
+.av-m{
+  height:88px;width:auto;position:relative;z-index:6;
+  animation:fl var(--fa,3.5s) var(--fd,0s) ease-in-out infinite;
+  filter:drop-shadow(0 6px 16px rgba(0,0,0,.7));
+  transition:transform .15s ease;
+}
+.av-m:active{transform:scale(.9)!important}
+
+/* mini info */
+.mini-info{
+  text-align:center;position:relative;z-index:6;
+  display:flex;flex-direction:column;align-items:center;gap:.2rem;
+}
+.mini-nm{
+  font-family:'Orbitron',sans-serif;font-size:.52rem;font-weight:700;
+  letter-spacing:.08em;color:rgba(255,255,255,.7);white-space:nowrap;
+}
+.mini-badge{
+  font-size:.58rem;font-weight:700;letter-spacing:.06em;
+  padding:.15rem .5rem;border-radius:20px;animation:badgePop 2.5s ease-in-out infinite;
+}
+.pd-badge{color:#ffbe0b;background:rgba(255,190,11,.12);border:1px solid rgba(255,190,11,.22)}
+.pt-badge{color:#fcbf49;background:rgba(252,191,73,.12);border:1px solid rgba(252,191,73,.22)}
+.slot-badge{
+  color:rgba(255,255,255,.45);background:rgba(255,255,255,.06);
+  border:1px dashed rgba(255,255,255,.2);
+  animation:slotGlow 2s ease-in-out infinite;
+}
+@keyframes slotGlow{0%,100%{border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.45)}
+  50%{border-color:rgba(255,255,255,.5);color:rgba(255,255,255,.8)}}
+
+/* notification bubble */
+.notif{
+  position:absolute;top:.5rem;right:.5rem;z-index:20;
+  font-size:.5rem;font-weight:700;padding:.15rem .4rem;border-radius:20px;
+  opacity:0;transition:opacity .4s ease;pointer-events:none;
+}
+.notif.show{opacity:1}
+.nd{background:#ff006e;color:#fff}
+.nt{background:#f77f00;color:#000}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━
+   GHOST / SLOT AVATAR
+━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.ghost{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  height:88px;width:64px;position:relative;z-index:6;
+  animation:ghostFloat 3s ease-in-out infinite;
+}
+@keyframes ghostFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.ghost-body{
+  width:52px;height:62px;
+  background:rgba(255,255,255,.04);
+  border:1.5px dashed rgba(255,255,255,.22);
+  border-radius:48% 48% 38% 38%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Orbitron',sans-serif;font-size:1.4rem;color:rgba(255,255,255,.3);
+  position:relative;animation:ghostGlow 2s ease-in-out infinite;
+}
+@keyframes ghostGlow{
+  0%,100%{box-shadow:none;border-color:rgba(255,255,255,.22)}
+  50%{box-shadow:0 0 14px rgba(255,255,255,.12);border-color:rgba(255,255,255,.45)}
+}
+.ghost-tail{
+  width:52px;height:14px;position:relative;
+  display:flex;justify-content:space-around;align-items:flex-start;margin-top:-2px;
+}
+.ghost-tail span{
+  width:13px;height:13px;border-radius:0 0 50% 50%;
+  background:rgba(255,255,255,.04);border:1.5px dashed rgba(255,255,255,.22);
+  border-top:none;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━
+   BOTTOM STRIP — PANCARTA IA
+━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+#strip{
+  height:56px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 .9rem;
+  background:linear-gradient(90deg,rgba(123,47,255,.15),rgba(0,245,255,.08));
+  border-top:1px solid rgba(123,47,255,.3);position:relative;overflow:hidden;
+}
+#strip::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent 0%,rgba(123,47,255,.08) 50%,transparent 100%);
+  animation:stripSweep 4s linear infinite;
+}
+@keyframes stripSweep{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+.strip-l{display:flex;align-items:center;gap:.55rem;position:relative;z-index:2}
+.strip-icon{font-size:1.1rem}
+.strip-brand{font-family:'Orbitron',sans-serif;font-size:.68rem;font-weight:900;
+  background:linear-gradient(90deg,#7b2fff,#00f5ff);-webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;background-clip:text}
+.strip-sub{font-size:.55rem;color:rgba(255,255,255,.35);letter-spacing:.06em;margin-top:.05rem}
+.strip-cta{
+  flex-shrink:0;padding:.45rem .8rem;border:none;border-radius:8px;
+  font-family:'Orbitron',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.08em;
+  background:linear-gradient(135deg,#7b2fff,#00f5ff);color:#000;cursor:pointer;
+  position:relative;z-index:2;transition:transform .2s;box-shadow:0 2px 14px rgba(0,245,255,.25);
+}
+.strip-cta:active{transform:scale(.96)}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━
    SPARKLE PARTICLES
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .spark{
   position:fixed;pointer-events:none;z-index:999;
-  animation:sparkFly .75s ease forwards;
+  animation:spk var(--dur,.75s) ease forwards;
 }
-@keyframes sparkFly{
+@keyframes spk{
   0%{transform:translate(0,0)scale(1.2);opacity:1}
   100%{transform:translate(var(--dx),var(--dy))scale(0);opacity:0}
 }
-
 /* ripple */
-@keyframes rippleOut{to{transform:scale(2.5);opacity:0}}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   SWIPE HINT
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.hint{
-  position:absolute;bottom:1rem;left:50%;transform:translateX(-50%);
-  font-size:.58rem;color:rgba(255,255,255,.16);letter-spacing:.2em;text-transform:uppercase;
-  z-index:10;text-align:center;pointer-events:none;
-  animation:hintFade 4s 4s ease-in-out infinite;
-}
-@keyframes hintFade{0%,100%{opacity:1}50%{opacity:.2}}
-.hint-arr{display:block;margin-top:.18rem;animation:arrBounce 1.5s ease-in-out infinite}
-@keyframes arrBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(3px)}}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   FLOATING STAR PARTICLES (CSS)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.stars{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
-.star{
-  position:absolute;border-radius:50%;
-  animation:starTwinkle var(--dur) var(--del) ease-in-out infinite;
-}
-@keyframes starTwinkle{0%,100%{opacity:0}50%{opacity:var(--op)}}
+@keyframes rout{to{transform:scale(2.8);opacity:0}}
   </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════
-     INTRO SCREEN
-═══════════════════════════════════ -->
+<!-- ═══════════════════════
+     INTRO
+═══════════════════════ -->
 <div id="intro">
   <span class="i-icon">📡</span>
-  <h1 class="i-title">PANCARTA IA</h1>
-  <p class="i-sub">Robayo Automatizaciones</p>
+  <h1 class="i-t1">ROBAYO AUTOM.</h1>
+  <p class="i-t2">PANCARTA IA · VITRINA DIGITAL</p>
   <div class="i-bar"><div class="i-fill"></div></div>
+  <p class="i-hint">toca para entrar</p>
 </div>
 
-<!-- ═══════════════════════════════════
-     APP — 4 PANELS
-═══════════════════════════════════ -->
+<!-- ═══════════════════════
+     APP
+═══════════════════════ -->
 <div id="app">
 
-  <!-- ─────────────────────────────────
-       PANEL 1 · KRONOS OPERATOR
-  ───────────────────────────────── -->
-  <section class="panel pk" id="p0">
-    <div class="stars" id="stars0"></div>
-
-    <div class="phdr">
-      <span class="phdr-tag">⚡ PANCARTA IA</span>
-      <span class="phdr-num">01 / 04</span>
+  <!-- TOPBAR -->
+  <header id="topbar">
+    <span class="tb-brand">Robayo Automatizaciones</span>
+    <div class="tb-right">
+      <span class="tb-tag">PANCARTA IA</span>
+      <div class="tb-dot"></div>
     </div>
+  </header>
 
-    <div class="stage" id="av0">
-      <div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div>
-      <svg class="av" viewBox="0 0 160 220" xmlns="http://www.w3.org/2000/svg">
+  <!-- ─────────────────────
+       FEATURED: KRONOS OPERATOR (PREMIUM)
+  ───────────────────── -->
+  <section id="featured">
+    <div class="stars" id="st0"></div>
+    <div class="tier-badge">👑 SPOT PREMIUM</div>
+
+    <div class="stage-f pk" id="av-k">
+      <div class="ring r1"></div>
+      <div class="ring r2"></div>
+      <div class="ring r3"></div>
+      <!-- KRONOS OPERATOR AVATAR -->
+      <svg class="av-f" viewBox="0 0 160 220" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <linearGradient id="gkb" x1="0%" y1="0%" x2="100%" y2="100%">
+          <linearGradient id="gkb2" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stop-color="#7b2fff"/>
             <stop offset="100%" stop-color="#3a0080"/>
           </linearGradient>
-          <linearGradient id="gkh" x1="0%" y1="0%" x2="100%" y2="100%">
+          <linearGradient id="gkh2" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stop-color="#12123a"/>
             <stop offset="100%" stop-color="#0a0a1f"/>
           </linearGradient>
-          <filter id="fgk" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur stdDeviation="4" result="b"/><feComposite in="SourceGraphic" in2="b"/>
-          </filter>
         </defs>
-        <!-- Aura glow -->
         <ellipse cx="80" cy="115" rx="52" ry="50" fill="#7b2fff" opacity=".07">
           <animate attributeName="ry" values="50;58;50" dur="3s" repeatCount="indefinite"/>
           <animate attributeName="opacity" values=".07;.14;.07" dur="3s" repeatCount="indefinite"/>
         </ellipse>
-        <!-- Antenna -->
         <line x1="80" y1="6" x2="80" y2="26" stroke="#00f5ff" stroke-width="2.5" stroke-linecap="round"/>
         <circle cx="80" cy="5" r="5" fill="#00f5ff">
           <animate attributeName="r" values="5;7;5" dur="1.4s" repeatCount="indefinite"/>
           <animate attributeName="opacity" values="1;.2;1" dur="1.4s" repeatCount="indefinite"/>
         </circle>
-        <!-- Head -->
-        <rect x="46" y="26" width="68" height="54" rx="10" fill="url(#gkh)" stroke="#00f5ff" stroke-width="1.5"/>
-        <!-- Visor -->
+        <rect x="46" y="26" width="68" height="54" rx="10" fill="url(#gkh2)" stroke="#00f5ff" stroke-width="1.5"/>
         <rect x="53" y="40" width="54" height="17" rx="5" fill="#00f5ff" opacity=".88">
           <animate attributeName="opacity" values=".88;.35;.88" dur="4s" repeatCount="indefinite"/>
-          <animate attributeName="x" values="53;51;53" dur="4s" repeatCount="indefinite"/>
           <animate attributeName="width" values="54;58;54" dur="4s" repeatCount="indefinite"/>
+          <animate attributeName="x" values="53;51;53" dur="4s" repeatCount="indefinite"/>
         </rect>
-        <!-- Visor scan line -->
         <line x1="53" y1="48" x2="107" y2="48" stroke="rgba(255,255,255,.3)" stroke-width=".8">
           <animate attributeName="x1" values="53;107;53" dur="2s" repeatCount="indefinite"/>
           <animate attributeName="x2" values="107;53;107" dur="2s" repeatCount="indefinite"/>
         </line>
-        <!-- Mouth grills -->
         <rect x="55" y="65" width="7" height="5" rx="1.5" fill="#00f5ff" opacity=".5"/>
         <rect x="66" y="65" width="7" height="5" rx="1.5" fill="#00f5ff" opacity=".5"/>
         <rect x="77" y="65" width="7" height="5" rx="1.5" fill="#00f5ff" opacity=".5"/>
         <rect x="88" y="65" width="7" height="5" rx="1.5" fill="#00f5ff" opacity=".5"/>
         <rect x="99" y="65" width="7" height="5" rx="1.5" fill="#00f5ff" opacity=".5"/>
-        <!-- Ear nodes -->
         <circle cx="46" cy="53" r="5" fill="#0a0a1f" stroke="#7b2fff" stroke-width="1.5"/>
         <circle cx="114" cy="53" r="5" fill="#0a0a1f" stroke="#7b2fff" stroke-width="1.5"/>
-        <!-- Neck -->
         <rect x="70" y="80" width="20" height="14" rx="3" fill="#16162e"/>
-        <!-- Body -->
-        <rect x="36" y="92" width="88" height="74" rx="12" fill="url(#gkb)" stroke="#7b2fff" stroke-width="1"/>
-        <!-- Chest panel -->
+        <rect x="36" y="92" width="88" height="74" rx="12" fill="url(#gkb2)" stroke="#7b2fff" stroke-width="1"/>
         <rect x="55" y="106" width="50" height="32" rx="6" fill="#08081a" stroke="#00f5ff" stroke-width=".8"/>
         <line x1="60" y1="116" x2="100" y2="116" stroke="#00f5ff" stroke-width=".7" opacity=".55"/>
         <line x1="60" y1="122" x2="98" y2="122" stroke="#7b2fff" stroke-width=".7" opacity=".55"/>
         <line x1="60" y1="128" x2="94" y2="128" stroke="#00f5ff" stroke-width=".7" opacity=".55"/>
-        <!-- Heart pulse -->
         <circle cx="80" cy="122" r="5" fill="#00f5ff">
           <animate attributeName="r" values="5;7;5" dur=".9s" repeatCount="indefinite"/>
           <animate attributeName="opacity" values=".9;.2;.9" dur=".9s" repeatCount="indefinite"/>
         </circle>
-        <!-- Left arm -->
-        <rect x="12" y="94" width="22" height="58" rx="10" fill="url(#gkb)" stroke="#7b2fff" stroke-width="1"/>
+        <rect x="12" y="94" width="22" height="58" rx="10" fill="url(#gkb2)" stroke="#7b2fff" stroke-width="1"/>
         <rect x="10" y="149" width="26" height="12" rx="6" fill="#16162e"/>
-        <!-- Right arm WAVING -->
         <g>
           <animateTransform attributeName="transform" type="rotate"
             values="0 126 96; -38 126 96; 0 126 96" dur="2s" repeatCount="indefinite"/>
-          <rect x="122" y="86" width="22" height="55" rx="10" fill="url(#gkb)" stroke="#7b2fff" stroke-width="1" transform-origin="126 96"/>
-          <rect x="120" y="85" width="26" height="12" rx="6" fill="#16162e" transform-origin="126 96"/>
+          <rect x="122" y="86" width="22" height="55" rx="10" fill="url(#gkb2)" stroke="#7b2fff" stroke-width="1"/>
+          <rect x="120" y="85" width="26" height="12" rx="6" fill="#16162e"/>
         </g>
-        <!-- Legs -->
-        <rect x="48" y="164" width="26" height="44" rx="8" fill="url(#gkb)" stroke="#7b2fff" stroke-width="1"/>
-        <rect x="86" y="164" width="26" height="44" rx="8" fill="url(#gkb)" stroke="#7b2fff" stroke-width="1"/>
+        <rect x="48" y="164" width="26" height="44" rx="8" fill="url(#gkb2)" stroke="#7b2fff" stroke-width="1"/>
+        <rect x="86" y="164" width="26" height="44" rx="8" fill="url(#gkb2)" stroke="#7b2fff" stroke-width="1"/>
         <rect x="42" y="202" width="34" height="11" rx="5" fill="#16162e"/>
         <rect x="84" y="202" width="34" height="11" rx="5" fill="#16162e"/>
       </svg>
     </div>
 
-    <div class="brand">
-      <h2 class="brand-nm">KRONOS OPERATOR</h2>
-      <p class="brand-sub">kronolog.ai · @kronosoperator</p>
-    </div>
-
-    <div class="card">
-      <div class="badge">⚡ LANZAMIENTO</div>
-      <div class="promo-row">
-        <div>
-          <div class="promo-ttl">CONSULTORÍA IA</div>
-          <div class="promo-desc">Automatiza tu negocio con<br>Inteligencia Artificial</div>
+    <div class="feat-info">
+      <div class="feat-left">
+        <div class="feat-nm">KRONOS OPERATOR</div>
+        <div class="feat-url">kronolog.ai · @kronosoperator</div>
+        <div class="feat-offer">
+          <span class="feat-offer-val">30 MIN GRATIS</span>
+          <span>Consultoría IA para tu negocio</span>
         </div>
-        <div class="promo-val">GRATIS</div>
       </div>
-      <button class="cta" onclick="ctaClick(this,'https://kronolog.ai')">AGENDA 30 MIN →</button>
-    </div>
-
-    <div class="hint">DESLIZA<span class="hint-arr">▼</span></div>
-  </section>
-
-  <!-- ─────────────────────────────────
-       PANEL 2 · BELLA ESTÉTICA
-  ───────────────────────────────── -->
-  <section class="panel pd" id="p1">
-    <div class="stars" id="stars1"></div>
-
-    <div class="phdr">
-      <span class="phdr-tag">⚡ PANCARTA IA</span>
-      <span class="phdr-num">02 / 04</span>
-    </div>
-
-    <div class="stage" id="av1">
-      <div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div>
-      <svg class="av" viewBox="0 0 160 220" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="gdiv" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#ff006e"/>
-            <stop offset="100%" stop-color="#c90057"/>
-          </linearGradient>
-          <linearGradient id="gskin" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#f5c5a3"/>
-            <stop offset="100%" stop-color="#e8a882"/>
-          </linearGradient>
-        </defs>
-        <!-- Sparkles floating -->
-        <text x="12" y="42" font-size="13" fill="#ffbe0b" opacity=".7">✨</text>
-        <text x="122" y="52" font-size="13" fill="#ffbe0b" opacity=".7">✨</text>
-        <text x="128" y="108" font-size="9" fill="#ff006e" opacity=".5">⭐</text>
-        <text x="5" y="90" font-size="9" fill="#ffbe0b" opacity=".5">⭐</text>
-        <!-- Hair back -->
-        <ellipse cx="80" cy="46" rx="36" ry="42" fill="#180030"/>
-        <!-- Face -->
-        <ellipse cx="80" cy="62" rx="30" ry="33" fill="url(#gskin)"/>
-        <!-- Hair sides -->
-        <path d="M50 46 Q38 74 44 96" stroke="#180030" stroke-width="11" fill="none" stroke-linecap="round"/>
-        <path d="M110 46 Q122 74 116 96" stroke="#180030" stroke-width="11" fill="none" stroke-linecap="round"/>
-        <!-- Crown / tiara -->
-        <path d="M50 30 L57 18 L65 28 L72 14 L80 26 L88 14 L95 28 L103 18 L110 30" stroke="#ffbe0b" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        <circle cx="80" cy="26" r="4.5" fill="#ffbe0b">
-          <animate attributeName="opacity" values="1;.3;1" dur="1.8s" repeatCount="indefinite"/>
-        </circle>
-        <circle cx="65" cy="28" r="2.5" fill="#ff006e"/>
-        <circle cx="95" cy="28" r="2.5" fill="#ff006e"/>
-        <!-- Eyes -->
-        <ellipse cx="68" cy="58" rx="7" ry="8" fill="#180030"/>
-        <ellipse cx="92" cy="58" rx="7" ry="8" fill="#180030"/>
-        <circle cx="70" cy="56" r="2.5" fill="#fff"/>
-        <circle cx="94" cy="56" r="2.5" fill="#fff"/>
-        <!-- Long lashes -->
-        <line x1="61" y1="50" x2="58" y2="45" stroke="#180030" stroke-width="1.8" stroke-linecap="round"/>
-        <line x1="68" y1="50" x2="67" y2="44" stroke="#180030" stroke-width="1.8" stroke-linecap="round"/>
-        <line x1="75" y1="51" x2="76" y2="46" stroke="#180030" stroke-width="1.8" stroke-linecap="round"/>
-        <line x1="85" y1="51" x2="84" y2="46" stroke="#180030" stroke-width="1.8" stroke-linecap="round"/>
-        <line x1="92" y1="50" x2="93" y2="44" stroke="#180030" stroke-width="1.8" stroke-linecap="round"/>
-        <line x1="99" y1="50" x2="102" y2="45" stroke="#180030" stroke-width="1.8" stroke-linecap="round"/>
-        <!-- Blink -->
-        <rect x="61" y="55" width="14" height="9" rx="5" fill="url(#gskin)" opacity="0">
-          <animate attributeName="opacity" values="0;0;0;0;0;0;0;1;0;0" dur="6s" repeatCount="indefinite"/>
-        </rect>
-        <rect x="85" y="55" width="14" height="9" rx="5" fill="url(#gskin)" opacity="0">
-          <animate attributeName="opacity" values="0;0;0;0;0;0;0;1;0;0" dur="6s" repeatCount="indefinite"/>
-        </rect>
-        <!-- Blush -->
-        <ellipse cx="56" cy="72" rx="11" ry="6" fill="#ff006e" opacity=".22"/>
-        <ellipse cx="104" cy="72" rx="11" ry="6" fill="#ff006e" opacity=".22"/>
-        <!-- Lips -->
-        <path d="M70 82 Q80 92 90 82" stroke="#ff006e" stroke-width="3" fill="none" stroke-linecap="round"/>
-        <path d="M70 82 Q80 77 90 82" fill="#ff006e" stroke="none" opacity=".7"/>
-        <!-- Neck -->
-        <rect x="73" y="93" width="14" height="14" rx="3" fill="url(#gskin)"/>
-        <!-- Body -->
-        <path d="M38 108 Q50 96 72 100 L80 108 L88 100 Q110 96 122 108 L120 168 Q80 180 40 168 Z" fill="url(#gdiv)"/>
-        <!-- Neckline -->
-        <path d="M66 100 Q80 118 94 100" stroke="#ffbe0b" stroke-width="1.8" fill="none"/>
-        <!-- Left arm with brush (down) -->
-        <path d="M40 110 Q28 134 32 160" stroke="#f5c5a3" stroke-width="15" fill="none" stroke-linecap="round"/>
-        <!-- Brush -->
-        <line x1="32" y1="160" x2="22" y2="183" stroke="#8b5e3c" stroke-width="5" stroke-linecap="round"/>
-        <ellipse cx="19" cy="188" rx="7" ry="3.5" fill="#ff006e" transform="rotate(-25 19 188)"/>
-        <ellipse cx="19" cy="188" rx="4" ry="2" fill="#ffbe0b" opacity=".5" transform="rotate(-25 19 188)"/>
-        <!-- Right arm WAVING -->
-        <g>
-          <animateTransform attributeName="transform" type="rotate"
-            values="0 120 112; -32 120 112; 0 120 112" dur="2s" repeatCount="indefinite"/>
-          <path d="M120 112 Q132 90 128 70" stroke="#f5c5a3" stroke-width="15" fill="none" stroke-linecap="round"/>
-          <ellipse cx="128" cy="68" rx="11" ry="13" fill="url(#gskin)"/>
-        </g>
-        <!-- Legs -->
-        <rect x="57" y="166" width="24" height="44" rx="8" fill="#c90057"/>
-        <rect x="81" y="166" width="24" height="44" rx="8" fill="#c90057"/>
-        <!-- Shoes -->
-        <ellipse cx="68" cy="210" rx="15" ry="6" fill="#ffbe0b"/>
-        <ellipse cx="92" cy="210" rx="15" ry="6" fill="#ffbe0b"/>
-        <!-- Heel -->
-        <rect x="76" y="207" width="4" height="10" rx="2" fill="#ffbe0b"/>
-        <rect x="88" y="207" width="4" height="10" rx="2" fill="#ffbe0b"/>
-      </svg>
-    </div>
-
-    <div class="brand">
-      <h2 class="brand-nm">BELLA ESTÉTICA</h2>
-      <p class="brand-sub">bellastetica.co · Centro Comercial</p>
-    </div>
-
-    <div class="card">
-      <div class="badge">💄 OFERTA DEL DÍA</div>
-      <div class="promo-row">
-        <div>
-          <div class="promo-ttl">MAQUILLAJE PRO</div>
-          <div class="promo-desc">Sesión completa + pestañas<br>para eventos y graduaciones</div>
-        </div>
-        <div class="promo-val">20%<br>OFF</div>
-      </div>
-      <button class="cta" onclick="ctaClick(this,'#bella')">RESERVAR CITA →</button>
+      <button class="cta-f" onclick="ctaClick(this,'https://kronolog.ai')">AGENDA →</button>
     </div>
   </section>
 
-  <!-- ─────────────────────────────────
-       PANEL 3 · TURBO MECÁNICA
-  ───────────────────────────────── -->
-  <section class="panel pt" id="p2">
-    <div class="stars" id="stars2"></div>
+  <!-- ─────────────────────
+       SECONDARY GRID
+  ───────────────────── -->
+  <div id="grid">
 
-    <div class="phdr">
-      <span class="phdr-tag">⚡ PANCARTA IA</span>
-      <span class="phdr-num">03 / 04</span>
-    </div>
-
-    <div class="stage" id="av2">
-      <div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div>
-      <svg class="av" viewBox="0 0 160 220" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="gtb" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#f77f00"/>
-            <stop offset="100%" stop-color="#d06500"/>
-          </linearGradient>
-          <linearGradient id="gskt" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#c68642"/>
-            <stop offset="100%" stop-color="#a0693a"/>
-          </linearGradient>
-        </defs>
-        <!-- Face -->
-        <ellipse cx="80" cy="60" rx="32" ry="34" fill="url(#gskt)"/>
-        <!-- Hard hat -->
-        <path d="M44 50 Q44 18 80 18 Q116 18 116 50 Z" fill="#fcbf49"/>
-        <rect x="38" y="47" width="84" height="10" rx="4" fill="#f77f00"/>
-        <!-- Hat visor -->
-        <rect x="36" y="48" width="88" height="6" rx="3" fill="#d06500"/>
-        <!-- Hat shine -->
-        <path d="M52 22 Q72 18 90 20" stroke="rgba(255,255,255,.25)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-        <!-- Eyes -->
-        <ellipse cx="68" cy="60" rx="7" ry="7" fill="#1a0800"/>
-        <ellipse cx="92" cy="60" rx="7" ry="7" fill="#1a0800"/>
-        <circle cx="70" cy="58" r="2.5" fill="#fff"/>
-        <circle cx="94" cy="58" r="2.5" fill="#fff"/>
-        <!-- Eyebrows (thick, determined) -->
-        <path d="M60 51 Q68 47 76 50" stroke="#1a0800" stroke-width="3" fill="none" stroke-linecap="round"/>
-        <path d="M84 50 Q92 47 100 51" stroke="#1a0800" stroke-width="3" fill="none" stroke-linecap="round"/>
-        <!-- Stubble -->
-        <ellipse cx="80" cy="78" rx="22" ry="10" fill="#7a5230" opacity=".3"/>
-        <!-- Big smile -->
-        <path d="M66 76 Q80 90 94 76" stroke="#1a0800" stroke-width="3" fill="none" stroke-linecap="round"/>
-        <path d="M66 76 Q80 72 94 76" fill="rgba(255,150,100,.3)" stroke="none"/>
-        <!-- Neck -->
-        <rect x="72" y="92" width="16" height="13" rx="3" fill="url(#gskt)"/>
-        <!-- Coverall body -->
-        <path d="M32 106 Q46 94 70 98 L80 108 L90 98 Q114 94 128 106 L126 172 Q80 184 34 172 Z" fill="#2d2d2d"/>
-        <!-- Center zip -->
-        <rect x="77" y="104" width="6" height="52" rx="3" fill="#3a3a3a"/>
-        <!-- Pockets -->
-        <rect x="44" y="122" width="22" height="16" rx="3" fill="#252525" stroke="#f77f00" stroke-width="1"/>
-        <rect x="94" y="122" width="22" height="16" rx="3" fill="#252525" stroke="#f77f00" stroke-width="1"/>
-        <!-- Safety stripes -->
-        <rect x="32" y="155" width="96" height="7" rx="2" fill="#f77f00" opacity=".65"/>
-        <rect x="32" y="148" width="96" height="4" rx="2" fill="#fcbf49" opacity=".35"/>
-        <!-- Collar patch -->
-        <circle cx="80" cy="110" r="6" fill="#f77f00" opacity=".5"/>
-        <!-- Left arm holding wrench -->
-        <path d="M34 108 Q20 134 24 162" stroke="#2d2d2d" stroke-width="20" fill="none" stroke-linecap="round"/>
-        <path d="M34 108 Q20 134 24 162" stroke="#383838" stroke-width="14" fill="none" stroke-linecap="round"/>
-        <!-- Wrench handle -->
-        <rect x="15" y="155" width="9" height="30" rx="3" fill="#999" transform="rotate(-15 15 155)"/>
-        <!-- Wrench head top -->
-        <ellipse cx="11" cy="155" rx="9" ry="6" fill="#999" transform="rotate(-15 11 155)"/>
-        <!-- Wrench head bottom -->
-        <ellipse cx="27" cy="183" rx="9" ry="6" fill="#999" transform="rotate(-15 27 183)"/>
-        <!-- Right arm WAVING -->
-        <g>
-          <animateTransform attributeName="transform" type="rotate"
-            values="0 124 108; -36 124 108; 0 124 108" dur="2s" repeatCount="indefinite"/>
-          <path d="M124 108 Q140 86 134 64" stroke="#2d2d2d" stroke-width="20" fill="none" stroke-linecap="round"/>
-          <path d="M124 108 Q140 86 134 64" stroke="#383838" stroke-width="14" fill="none" stroke-linecap="round"/>
-          <ellipse cx="134" cy="62" rx="13" ry="15" fill="url(#gskt)"/>
-        </g>
-        <!-- Legs -->
-        <rect x="50" y="170" width="26" height="42" rx="8" fill="#1a1a1a"/>
-        <rect x="84" y="170" width="26" height="42" rx="8" fill="#1a1a1a"/>
-        <!-- Boots -->
-        <rect x="44" y="206" width="36" height="12" rx="5" fill="#f77f00"/>
-        <rect x="80" y="206" width="36" height="12" rx="5" fill="#f77f00"/>
-        <rect x="44" y="204" width="36" height="6" rx="3" fill="#fcbf49" opacity=".4"/>
-        <rect x="80" y="204" width="36" height="6" rx="3" fill="#fcbf49" opacity=".4"/>
-      </svg>
-    </div>
-
-    <div class="brand">
-      <h2 class="brand-nm">TURBO MECÁNICA</h2>
-      <p class="brand-sub">turbomecanica.co · Servicio automotriz</p>
-    </div>
-
-    <div class="card">
-      <div class="badge">🔧 PROMO FLASH</div>
-      <div class="promo-row">
-        <div>
-          <div class="promo-ttl">REVISIÓN GENERAL</div>
-          <div class="promo-desc">Aceite + frenos + diagnóstico<br>electrónico incluido</div>
-        </div>
-        <div class="promo-val">$50k<br>OFF</div>
+    <!-- BELLA ESTÉTICA -->
+    <div class="mini pd-mini" id="spot-d">
+      <div class="stars" id="st1"></div>
+      <div class="notif nd" id="nd">💄 HOY</div>
+      <div class="stage-m" id="av-d">
+        <div class="rm rm1"></div><div class="rm rm2"></div>
+        <svg class="av-m" style="--fa:3.2s;--fd:.4s" viewBox="0 0 160 220" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="gdv2" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ff006e"/><stop offset="100%" stop-color="#c90057"/>
+            </linearGradient>
+            <linearGradient id="gsk2" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#f5c5a3"/><stop offset="100%" stop-color="#e8a882"/>
+            </linearGradient>
+          </defs>
+          <text x="12" y="42" font-size="13" fill="#ffbe0b" opacity=".7">✨</text>
+          <text x="122" y="52" font-size="13" fill="#ffbe0b" opacity=".7">✨</text>
+          <ellipse cx="80" cy="46" rx="36" ry="42" fill="#180030"/>
+          <ellipse cx="80" cy="62" rx="30" ry="33" fill="url(#gsk2)"/>
+          <path d="M50 46 Q38 74 44 96" stroke="#180030" stroke-width="11" fill="none" stroke-linecap="round"/>
+          <path d="M110 46 Q122 74 116 96" stroke="#180030" stroke-width="11" fill="none" stroke-linecap="round"/>
+          <path d="M50 30 L57 18 L65 28 L72 14 L80 26 L88 14 L95 28 L103 18 L110 30" stroke="#ffbe0b" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="80" cy="26" r="4.5" fill="#ffbe0b"><animate attributeName="opacity" values="1;.3;1" dur="1.8s" repeatCount="indefinite"/></circle>
+          <ellipse cx="68" cy="58" rx="7" ry="8" fill="#180030"/>
+          <ellipse cx="92" cy="58" rx="7" ry="8" fill="#180030"/>
+          <circle cx="70" cy="56" r="2.5" fill="#fff"/>
+          <circle cx="94" cy="56" r="2.5" fill="#fff"/>
+          <ellipse cx="56" cy="72" rx="11" ry="6" fill="#ff006e" opacity=".22"/>
+          <ellipse cx="104" cy="72" rx="11" ry="6" fill="#ff006e" opacity=".22"/>
+          <path d="M70 82 Q80 92 90 82" stroke="#ff006e" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <rect x="73" y="93" width="14" height="14" rx="3" fill="url(#gsk2)"/>
+          <path d="M38 108 Q50 96 72 100 L80 108 L88 100 Q110 96 122 108 L120 168 Q80 180 40 168 Z" fill="url(#gdv2)"/>
+          <path d="M40 110 Q28 134 32 160" stroke="#f5c5a3" stroke-width="15" fill="none" stroke-linecap="round"/>
+          <line x1="32" y1="160" x2="22" y2="183" stroke="#8b5e3c" stroke-width="5" stroke-linecap="round"/>
+          <ellipse cx="19" cy="188" rx="7" ry="3.5" fill="#ff006e" transform="rotate(-25 19 188)"/>
+          <g>
+            <animateTransform attributeName="transform" type="rotate" values="0 120 112; -32 120 112; 0 120 112" dur="2s" repeatCount="indefinite"/>
+            <path d="M120 112 Q132 90 128 70" stroke="#f5c5a3" stroke-width="15" fill="none" stroke-linecap="round"/>
+            <ellipse cx="128" cy="68" rx="11" ry="13" fill="url(#gsk2)"/>
+          </g>
+          <rect x="57" y="166" width="24" height="44" rx="8" fill="#c90057"/>
+          <rect x="81" y="166" width="24" height="44" rx="8" fill="#c90057"/>
+          <ellipse cx="68" cy="210" rx="15" ry="6" fill="#ffbe0b"/>
+          <ellipse cx="92" cy="210" rx="15" ry="6" fill="#ffbe0b"/>
+        </svg>
       </div>
-      <button class="cta" onclick="ctaClick(this,'#turbo')">PEDIR TURNO →</button>
-    </div>
-  </section>
-
-  <!-- ─────────────────────────────────
-       PANEL 4 · FLASH MODA
-  ───────────────────────────────── -->
-  <section class="panel pf" id="p3">
-    <div class="stars" id="stars3"></div>
-
-    <div class="phdr">
-      <span class="phdr-tag">⚡ PANCARTA IA</span>
-      <span class="phdr-num">04 / 04</span>
-    </div>
-
-    <div class="stage" id="av3">
-      <div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div>
-      <svg class="av" viewBox="0 0 160 220" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="gfl" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#f72585"/>
-            <stop offset="100%" stop-color="#b5179e"/>
-          </linearGradient>
-          <linearGradient id="gsk2" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#3a0ca3"/>
-            <stop offset="100%" stop-color="#7209b7"/>
-          </linearGradient>
-          <linearGradient id="gsf" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#fdd5b1"/>
-            <stop offset="100%" stop-color="#f4b88a"/>
-          </linearGradient>
-        </defs>
-        <!-- Floating stars -->
-        <text x="8" y="50" font-size="12" fill="#f72585" opacity=".6">💫</text>
-        <text x="130" y="60" font-size="12" fill="#f72585" opacity=".6">💫</text>
-        <text x="140" y="110" font-size="9" fill="#f72585" opacity=".4">★</text>
-        <text x="5" y="105" font-size="9" fill="#f72585" opacity=".4">★</text>
-        <!-- Hair big volume back -->
-        <ellipse cx="80" cy="44" rx="40" ry="46" fill="#1a0028"/>
-        <!-- Side curls -->
-        <path d="M40 52 Q26 78 34 100" stroke="#1a0028" stroke-width="15" fill="none" stroke-linecap="round"/>
-        <path d="M120 52 Q134 78 126 100" stroke="#1a0028" stroke-width="15" fill="none" stroke-linecap="round"/>
-        <!-- Face -->
-        <ellipse cx="80" cy="62" rx="29" ry="32" fill="url(#gsf)"/>
-        <!-- Hair front strands -->
-        <path d="M52 40 Q60 54 57 62" stroke="#1a0028" stroke-width="9" fill="none" stroke-linecap="round"/>
-        <path d="M108 40 Q100 54 103 62" stroke="#1a0028" stroke-width="9" fill="none" stroke-linecap="round"/>
-        <!-- Big expressive eyes -->
-        <ellipse cx="68" cy="59" rx="8" ry="9" fill="#1a0028"/>
-        <ellipse cx="92" cy="59" rx="8" ry="9" fill="#1a0028"/>
-        <circle cx="70" cy="57" r="3" fill="#fff"/>
-        <circle cx="94" cy="57" r="3" fill="#fff"/>
-        <!-- Lashes -->
-        <line x1="60" y1="50" x2="57" y2="45" stroke="#1a0028" stroke-width="2" stroke-linecap="round"/>
-        <line x1="67" y1="50" x2="66" y2="44" stroke="#1a0028" stroke-width="2" stroke-linecap="round"/>
-        <line x1="74" y1="51" x2="75" y2="46" stroke="#1a0028" stroke-width="2" stroke-linecap="round"/>
-        <line x1="86" y1="51" x2="85" y2="46" stroke="#1a0028" stroke-width="2" stroke-linecap="round"/>
-        <line x1="93" y1="50" x2="94" y2="44" stroke="#1a0028" stroke-width="2" stroke-linecap="round"/>
-        <line x1="100" y1="50" x2="103" y2="45" stroke="#1a0028" stroke-width="2" stroke-linecap="round"/>
-        <!-- Blink -->
-        <rect x="60" y="57" width="16" height="10" rx="5" fill="url(#gsf)" opacity="0">
-          <animate attributeName="opacity" values="0;0;0;0;0;1;0;0" dur="5s" repeatCount="indefinite"/>
-        </rect>
-        <rect x="84" y="57" width="16" height="10" rx="5" fill="url(#gsf)" opacity="0">
-          <animate attributeName="opacity" values="0;0;0;0;0;1;0;0" dur="5s" repeatCount="indefinite"/>
-        </rect>
-        <!-- Blush circles -->
-        <ellipse cx="56" cy="72" rx="10" ry="6" fill="#f72585" opacity=".2"/>
-        <ellipse cx="104" cy="72" rx="10" ry="6" fill="#f72585" opacity=".2"/>
-        <!-- Smile -->
-        <path d="M68 80 Q80 92 92 80" stroke="#f72585" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-        <path d="M68 80 Q80 75 92 80" fill="#f72585" stroke="none" opacity=".8"/>
-        <!-- Neck -->
-        <rect x="73" y="92" width="14" height="13" rx="3" fill="url(#gsf)"/>
-        <!-- Top/blouse -->
-        <path d="M42 104 Q55 94 73 98 L80 108 L87 98 Q105 94 118 104 L116 152 Q80 163 44 152 Z" fill="url(#gfl)"/>
-        <!-- Neckline sparkle -->
-        <path d="M67 98 Q80 116 93 98" stroke="#b5179e" stroke-width="1.5" fill="none"/>
-        <!-- Left arm with shopping bag -->
-        <path d="M44 106 Q30 132 32 160" stroke="url(#gfl)" stroke-width="16" fill="none" stroke-linecap="round"/>
-        <!-- Shopping bag -->
-        <rect x="14" y="152" width="28" height="26" rx="5" fill="#3a0ca3" stroke="#f72585" stroke-width="1.5"/>
-        <path d="M18 152 Q21 140 29 140 Q37 140 40 152" stroke="#f72585" stroke-width="2" fill="none" stroke-linecap="round"/>
-        <text x="17" y="167" font-size="12" fill="#fff">👜</text>
-        <!-- Right arm WAVING -->
-        <g>
-          <animateTransform attributeName="transform" type="rotate"
-            values="0 116 108; -32 116 108; 0 116 108" dur="2s" repeatCount="indefinite"/>
-          <path d="M116 108 Q132 86 128 66" stroke="url(#gfl)" stroke-width="16" fill="none" stroke-linecap="round"/>
-          <ellipse cx="128" cy="64" rx="12" ry="14" fill="url(#gsf)"/>
-        </g>
-        <!-- Flared skirt -->
-        <path d="M42 150 Q28 180 34 214 Q80 224 126 214 Q132 180 118 150 Q80 164 42 150Z" fill="url(#gsk2)"/>
-        <!-- Skirt shimmer -->
-        <path d="M48 154 Q56 182 52 214" stroke="rgba(255,255,255,.08)" stroke-width="1" fill="none"/>
-        <path d="M80 157 Q80 185 80 215" stroke="rgba(255,255,255,.08)" stroke-width="1" fill="none"/>
-        <path d="M112 154 Q104 182 108 214" stroke="rgba(255,255,255,.08)" stroke-width="1" fill="none"/>
-        <!-- Sparkle on skirt -->
-        <text x="58" y="190" font-size="10" fill="rgba(255,255,255,.25)">✦</text>
-        <text x="90" y="200" font-size="8" fill="rgba(255,255,255,.2)">✦</text>
-        <!-- Heels -->
-        <ellipse cx="62" cy="214" rx="14" ry="5" fill="#f72585"/>
-        <rect x="68" y="208" width="4" height="10" rx="2" fill="#f72585"/>
-        <ellipse cx="96" cy="214" rx="14" ry="5" fill="#f72585"/>
-        <rect x="94" y="208" width="4" height="10" rx="2" fill="#f72585"/>
-      </svg>
-    </div>
-
-    <div class="brand">
-      <h2 class="brand-nm">FLASH MODA</h2>
-      <p class="brand-sub">flashmoda.co · Ropa y accesorios</p>
-    </div>
-
-    <div class="card">
-      <div class="badge">👗 NUEVA COLECCIÓN</div>
-      <div class="promo-row">
-        <div>
-          <div class="promo-ttl">ACCESORIOS 2026</div>
-          <div class="promo-desc">Bolsos, correas y joyería<br>tendencia de temporada</div>
-        </div>
-        <div class="promo-val">2×1</div>
+      <div class="mini-info">
+        <div class="mini-nm">BELLA EST.</div>
+        <div class="mini-badge pd-badge">💄 20% OFF</div>
       </div>
-      <button class="cta" onclick="ctaClick(this,'#flash')">VER CATÁLOGO →</button>
     </div>
-  </section>
+
+    <!-- TURBO MECÁNICA -->
+    <div class="mini pt-mini" id="spot-t">
+      <div class="stars" id="st2"></div>
+      <div class="notif nt" id="nt">🔧 NUEVO</div>
+      <div class="stage-m" id="av-t">
+        <div class="rm rm1"></div><div class="rm rm2"></div>
+        <svg class="av-m" style="--fa:4s;--fd:.8s" viewBox="0 0 160 220" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="gtb2" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#f77f00"/><stop offset="100%" stop-color="#d06500"/>
+            </linearGradient>
+            <linearGradient id="gst2" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#c68642"/><stop offset="100%" stop-color="#a0693a"/>
+            </linearGradient>
+          </defs>
+          <ellipse cx="80" cy="60" rx="32" ry="34" fill="url(#gst2)"/>
+          <path d="M44 50 Q44 18 80 18 Q116 18 116 50 Z" fill="#fcbf49"/>
+          <rect x="38" y="47" width="84" height="10" rx="4" fill="#f77f00"/>
+          <rect x="36" y="48" width="88" height="6" rx="3" fill="#d06500"/>
+          <ellipse cx="68" cy="60" rx="7" ry="7" fill="#1a0800"/>
+          <ellipse cx="92" cy="60" rx="7" ry="7" fill="#1a0800"/>
+          <circle cx="70" cy="58" r="2.5" fill="#fff"/>
+          <circle cx="94" cy="58" r="2.5" fill="#fff"/>
+          <path d="M60 51 Q68 47 76 50" stroke="#1a0800" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M84 50 Q92 47 100 51" stroke="#1a0800" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M66 76 Q80 90 94 76" stroke="#1a0800" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <rect x="72" y="92" width="16" height="13" rx="3" fill="url(#gst2)"/>
+          <path d="M32 106 Q46 94 70 98 L80 108 L90 98 Q114 94 128 106 L126 172 Q80 184 34 172 Z" fill="#2d2d2d"/>
+          <rect x="77" y="104" width="6" height="52" rx="3" fill="#3a3a3a"/>
+          <rect x="32" y="155" width="96" height="7" rx="2" fill="#f77f00" opacity=".65"/>
+          <path d="M34 108 Q20 134 24 162" stroke="#2d2d2d" stroke-width="20" fill="none" stroke-linecap="round"/>
+          <rect x="15" y="155" width="9" height="30" rx="3" fill="#999" transform="rotate(-15 15 155)"/>
+          <ellipse cx="11" cy="155" rx="9" ry="6" fill="#999" transform="rotate(-15 11 155)"/>
+          <ellipse cx="27" cy="183" rx="9" ry="6" fill="#999" transform="rotate(-15 27 183)"/>
+          <g>
+            <animateTransform attributeName="transform" type="rotate" values="0 124 108; -36 124 108; 0 124 108" dur="2s" repeatCount="indefinite"/>
+            <path d="M124 108 Q140 86 134 64" stroke="#2d2d2d" stroke-width="20" fill="none" stroke-linecap="round"/>
+            <path d="M124 108 Q140 86 134 64" stroke="#383838" stroke-width="14" fill="none" stroke-linecap="round"/>
+            <ellipse cx="134" cy="62" rx="13" ry="15" fill="url(#gst2)"/>
+          </g>
+          <rect x="50" y="170" width="26" height="42" rx="8" fill="#1a1a1a"/>
+          <rect x="84" y="170" width="26" height="42" rx="8" fill="#1a1a1a"/>
+          <rect x="44" y="206" width="36" height="12" rx="5" fill="#f77f00"/>
+          <rect x="80" y="206" width="36" height="12" rx="5" fill="#f77f00"/>
+        </svg>
+      </div>
+      <div class="mini-info">
+        <div class="mini-nm">TURBO MEC.</div>
+        <div class="mini-badge pt-badge">🔧 $50k OFF</div>
+      </div>
+    </div>
+
+    <!-- ¿TU MARCA AQUÍ? -->
+    <div class="mini slot" id="spot-s" onclick="slotClick()">
+      <div class="stage-m" id="av-s">
+        <div class="rm rm1"></div><div class="rm rm2"></div>
+        <div class="ghost">
+          <div class="ghost-body">?</div>
+          <div class="ghost-tail">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
+      </div>
+      <div class="mini-info">
+        <div class="mini-nm" style="color:rgba(255,255,255,.5)">¿TU MARCA?</div>
+        <div class="mini-badge slot-badge">+ RESERVAR</div>
+      </div>
+    </div>
+
+  </div><!-- end #grid -->
+
+  <!-- ─────────────────────
+       BOTTOM STRIP — PANCARTA IA
+  ───────────────────── -->
+  <div id="strip">
+    <div class="strip-l">
+      <span class="strip-icon">📡</span>
+      <div>
+        <div class="strip-brand">PANCARTA IA</div>
+        <div class="strip-sub">ponemos tu negocio en la vitrina digital</div>
+      </div>
+    </div>
+    <button class="strip-cta" onclick="ctaClick(this,'https://kronolog.ai')">ANÚNCIATE →</button>
+  </div>
 
 </div><!-- end #app -->
 
-<!-- ═══════════════════════════════════
-     NAV DOTS
-═══════════════════════════════════ -->
-<nav id="ndots">
-  <button class="ndot on" data-p="0"></button>
-  <button class="ndot" data-p="1"></button>
-  <button class="ndot" data-p="2"></button>
-  <button class="ndot" data-p="3"></button>
-</nav>
-
 <script>
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   INTRO — auto-dismiss after 3s
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━
+   INTRO
+━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 const intro = document.getElementById('intro');
-setTimeout(() => intro.classList.add('out'), 3000);
-intro.addEventListener('click', () => intro.classList.add('out'));
+const dismiss = () => intro.classList.add('out');
+setTimeout(dismiss, 3200);
+intro.addEventListener('click', dismiss);
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   SCROLL — NAV DOTS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-const app = document.getElementById('app');
-const panels = Array.from(document.querySelectorAll('.panel'));
-const dots = Array.from(document.querySelectorAll('.ndot'));
-
-const io = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting && e.intersectionRatio >= .5) {
-      const idx = panels.indexOf(e.target);
-      dots.forEach(d => d.classList.remove('on'));
-      if (dots[idx]) dots[idx].classList.add('on');
-    }
-  });
-}, { root: app, threshold: .5 });
-
-panels.forEach(p => io.observe(p));
-
-dots.forEach(dot => {
-  dot.addEventListener('click', () => {
-    panels[+dot.dataset.p].scrollIntoView({ behavior: 'smooth' });
-  });
-});
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   AVATAR TAP — sparkle burst
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SPARKLE BURST
+━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 const SETS = [
-  ['⚡','🤖','💡','✦','◆'],
-  ['💄','💅','✨','💖','⭐'],
-  ['🔧','⚙️','💥','🔩','✦'],
-  ['👗','💫','🛍️','✨','★']
+  ['⚡','🤖','💡','✦','◆','●'],
+  ['💄','💅','✨','💖','⭐','✦'],
+  ['🔧','⚙️','💥','🔩','✦','◆'],
+  ['?','✨','💫','★','✦','◆']
 ];
 
-document.querySelectorAll('.stage').forEach((stage, i) => {
-  stage.addEventListener('click', e => {
-    burst(e.clientX, e.clientY, SETS[i]);
-    const svg = stage.querySelector('.av');
-    svg.style.transition = 'transform .15s ease';
-    svg.style.transform = 'scale(1.12) rotate(6deg)';
-    setTimeout(() => { svg.style.transform = ''; }, 280);
-  });
-});
-
-function burst(cx, cy, set) {
-  for (let n = 0; n < 9; n++) {
+function burst(cx, cy, set, count=9) {
+  for (let n = 0; n < count; n++) {
     const sp = document.createElement('div');
     sp.className = 'spark';
-    const angle = (n / 9) * Math.PI * 2;
-    const dist = 60 + Math.random() * 60;
+    const angle = (n / count) * Math.PI * 2 + Math.random() * .4;
+    const dist = 45 + Math.random() * 65;
     sp.textContent = set[Math.floor(Math.random() * set.length)];
     sp.style.cssText = `
-      left:${cx}px; top:${cy}px; font-size:${.9 + Math.random() * .7}rem;
-      --dx:${Math.cos(angle) * dist}px; --dy:${Math.sin(angle) * dist - 40}px;
-      animation-delay:${Math.random() * .12}s; animation-duration:${.6 + Math.random() * .3}s;
+      left:${cx}px;top:${cy}px;font-size:${.8+Math.random()*.7}rem;
+      --dx:${Math.cos(angle)*dist}px;
+      --dy:${Math.sin(angle)*dist - 35}px;
+      --dur:${.55+Math.random()*.3}s;
+      animation-delay:${Math.random()*.1}s;
     `;
     document.body.appendChild(sp);
     sp.addEventListener('animationend', () => sp.remove());
   }
 }
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   CTA BUTTON — ripple + navigate
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-// inject ripple keyframe once
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━
+   WEB AUDIO BOOP
+━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+let audioCtx = null;
+function boop(freq=440, type='sine', dur=.18) {
+  try {
+    if (!audioCtx) audioCtx = new (window.AudioContext||window.webkitAudioContext)();
+    const o = audioCtx.createOscillator();
+    const g = audioCtx.createGain();
+    o.connect(g); g.connect(audioCtx.destination);
+    o.type = type; o.frequency.value = freq;
+    g.gain.setValueAtTime(.08, audioCtx.currentTime);
+    g.gain.exponentialRampToValueAtTime(.001, audioCtx.currentTime + dur);
+    o.start(); o.stop(audioCtx.currentTime + dur);
+  } catch(e) {}
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━
+   AVATAR BOUNCE
+━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+function bounceAv(svg, scale=1.15, rot=6) {
+  svg.style.transition = 'transform .12s ease';
+  svg.style.transform = `scale(${scale}) rotate(${rot}deg)`;
+  setTimeout(() => {
+    svg.style.transform = `scale(.96) rotate(${-rot*.3}deg)`;
+    setTimeout(() => { svg.style.transform = ''; }, 120);
+  }, 130);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━
+   TAP HANDLERS
+━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+const avK = document.getElementById('av-k');
+const avD = document.getElementById('av-d');
+const avT = document.getElementById('av-t');
+const avS = document.getElementById('av-s');
+
+function attachTap(el, setIdx, freqs) {
+  el.addEventListener('click', e => {
+    const r = el.getBoundingClientRect();
+    const cx = r.left + r.width/2, cy = r.top + r.height/2;
+    burst(cx, cy, SETS[setIdx]);
+    const svg = el.querySelector('.av-f,.av-m');
+    if (svg) bounceAv(svg);
+    const ghost = el.querySelector('.ghost-body');
+    if (ghost) { ghost.style.transform='scale(1.2)'; setTimeout(()=>ghost.style.transform='',300); }
+    freqs.forEach((f,i) => setTimeout(() => boop(f), i*60));
+  });
+}
+
+attachTap(avK, 0, [523, 659, 784]);
+attachTap(avD, 1, [659, 784]);
+attachTap(avT, 2, [349, 440]);
+attachTap(avS, 3, [880, 1046]);
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━
+   CTA RIPPLE + NAVIGATE
+━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 const rs = document.createElement('style');
-rs.textContent = '@keyframes ro{to{transform:scale(2.5);opacity:0}}';
+rs.textContent = '@keyframes rout{to{transform:scale(2.8);opacity:0}}';
 document.head.appendChild(rs);
 
 function ctaClick(btn, url) {
   const r = document.createElement('span');
-  r.style.cssText = `
-    position:absolute;border-radius:50%;background:rgba(255,255,255,.25);
-    transform:scale(0);animation:ro .6s ease forwards;pointer-events:none;
-    width:200px;height:200px;left:50%;top:50%;margin-left:-100px;margin-top:-100px;
-  `;
+  r.style.cssText = 'position:absolute;border-radius:50%;background:rgba(255,255,255,.22);transform:scale(0);animation:rout .55s ease forwards;pointer-events:none;width:200px;height:200px;left:50%;top:50%;margin-left:-100px;margin-top:-100px;';
   btn.appendChild(r);
-  setTimeout(() => r.remove(), 620);
-  if (url && url.startsWith('http')) {
-    setTimeout(() => window.open(url, '_blank'), 220);
-  }
+  boop(660, 'sine', .2);
+  setTimeout(() => r.remove(), 560);
+  if (url && url.startsWith('http')) setTimeout(() => window.open(url,'_blank'), 240);
 }
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   STARS — CSS-animated twinkle
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-const STAR_COLORS = ['#00f5ff','#7b2fff','#fff','#00f5ff',
-                     '#ffbe0b','#ff006e','#fff','#ffbe0b',
-                     '#fcbf49','#f77f00','#fff','#fcbf49',
-                     '#f72585','#3a0ca3','#fff','#f72585'];
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SLOT CLICK
+━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+function slotClick() {
+  const r = avS.getBoundingClientRect();
+  burst(r.left+r.width/2, r.top+r.height/2, ['?','✨','💡','⭐','→'], 12);
+  boop(880,'sine',.15);
+  boop(1046,'sine',.15);
+  setTimeout(() => window.open('https://kronolog.ai','_blank'), 300);
+}
 
-document.querySelectorAll('.stars').forEach((container, pi) => {
-  const W = window.innerWidth;
-  const H = window.innerHeight;
-  for (let i = 0; i < 35; i++) {
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━
+   AUTONOMOUS ANIMATIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+const autoTargets = [
+  { el: avK, set: 0, svgSel: '.av-f', freqs: [523,659] },
+  { el: avD, set: 1, svgSel: '.av-m', freqs: [659] },
+  { el: avT, set: 2, svgSel: '.av-m', freqs: [440] },
+];
+
+const notifD = document.getElementById('nd');
+const notifT = document.getElementById('nt');
+
+function autoTick() {
+  const t = autoTargets[Math.floor(Math.random() * autoTargets.length)];
+  const svg = t.el.querySelector(t.svgSel);
+  if (svg) {
+    bounceAv(svg, 1.12, 5);
+    const r = t.el.getBoundingClientRect();
+    burst(r.left + r.width/2, r.top + r.height/2, SETS[t.set], 5);
+    boop(t.freqs[0], 'sine', .12);
+  }
+  // toggle notifs randomly
+  notifD.classList.toggle('show', Math.random() > .4);
+  notifT.classList.toggle('show', Math.random() > .5);
+  // schedule next
+  setTimeout(autoTick, 1800 + Math.random() * 2400);
+}
+// start autonomous after intro
+setTimeout(autoTick, 3500);
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━
+   RANDOM GHOST WIGGLE
+━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+function ghostWiggle() {
+  const g = document.querySelector('.ghost-body');
+  if (g) {
+    g.style.transition = 'transform .1s ease';
+    g.style.transform = 'rotate(10deg) scale(1.1)';
+    setTimeout(() => { g.style.transform = 'rotate(-8deg)'; }, 120);
+    setTimeout(() => { g.style.transform = ''; }, 250);
+  }
+  setTimeout(ghostWiggle, 3000 + Math.random() * 3000);
+}
+setTimeout(ghostWiggle, 5000);
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━
+   CSS STAR PARTICLES
+━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+const SCOLS = ['#00f5ff','#7b2fff','#ffffff',
+               '#ffbe0b','#ff006e','#ffffff',
+               '#fcbf49','#f77f00','#ffffff'];
+document.querySelectorAll('.stars').forEach((c, pi) => {
+  for (let i = 0; i < 30; i++) {
     const s = document.createElement('div');
     s.className = 'star';
-    const sz = .8 + Math.random() * 1.8;
-    const col = STAR_COLORS[pi * 4 + Math.floor(Math.random() * 4)];
-    const dur = 2 + Math.random() * 4;
-    const del = -Math.random() * 5;
-    const op = .15 + Math.random() * .35;
+    const col = SCOLS[pi*3 + Math.floor(Math.random()*3)] || '#fff';
+    const sz = .6 + Math.random() * 1.6;
     s.style.cssText = `
       left:${Math.random()*100}%;top:${Math.random()*100}%;
       width:${sz}px;height:${sz}px;background:${col};
-      --dur:${dur}s;--del:${del}s;--op:${op};
+      --d:${2+Math.random()*4}s;--dl:${-Math.random()*5}s;--o:${.1+Math.random()*.35};
     `;
-    container.appendChild(s);
+    c.appendChild(s);
   }
 });
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   FIX 100vh on mobile browsers
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-function setVh() {
-  document.documentElement.style.setProperty('--vh', `${window.innerHeight * .01}px`);
-}
-setVh();
-window.addEventListener('resize', setVh);
 </script>
 </body>
 </html>
